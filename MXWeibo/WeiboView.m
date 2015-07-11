@@ -13,6 +13,7 @@
 #import "ThemeImageView.h"
 #import "RegexKitLite.h"
 #import "NSString+URLEncoding.h"
+#import "UIUtils.h"
 
 #define LIST_FONT   14.0f           //列表中文本字体
 #define LIST_REPOST_FONT  13.0f;    //列表中转发的文本字体
@@ -74,6 +75,7 @@
     if (_repostView == nil) {
         _repostView = [[WeiboView alloc] initWithFrame:CGRectZero];
         _repostView.isRepost = YES;
+        _repostView.isDetail = self.isDetail;
         [self addSubview:_repostView];
     }
     
@@ -87,31 +89,18 @@
     
     [_parseText setString:@""];
     
-    NSString *text = _weiboModel.text;
-    // 表达式
-    NSString *regex = @"(@\\w+)|(#\\w+#)|(http(s)?://([A-Za-z0-9._-]+(/)?)*)";
-    NSArray *matchArray = [text componentsMatchedByRegex:regex];
-    //@用户 http:// #话题#
-    for (NSString *linkString in matchArray) {
-        
-        //三种不同形式的超链接
-        // <a href='user://@用户'></a>
-        // <a href='http://www.baidu.com'>http://www.baidu.com</a>
-        // <a href='topic://#话题#'>#话题#</a>
-        
-
-        NSString *replacing = nil;
-        if ([linkString hasPrefix:@"@"]) {
-            replacing = [NSString stringWithFormat:@"<a href='user://%@'>%@</a>", [linkString URLEncodedString], linkString];
-        } else if ([linkString hasPrefix:@"http"]) {
-            replacing = [NSString stringWithFormat:@"<a href='%@'>%@</a>", linkString, linkString];
-        } else if ([linkString hasPrefix:@"#"]) {
-            replacing = [NSString stringWithFormat:@"<a href='topic://%@'>%@</a>", [linkString URLEncodedString], linkString];
-        }
-        if (replacing != nil) {
-            text = [text stringByReplacingOccurrencesOfString:linkString withString:replacing];
-        }
+    //判断当前是否为转发微博视图
+    if (_isRepost) {
+        //将源微博作者拼接
+        //源微博作者昵称
+        NSString *nickName = _weiboModel.user.screen_name;
+        NSString *encodeName = [nickName URLEncodedString];
+        [_parseText appendFormat:@"<a href='user://%@'>%@</a>: ", encodeName, nickName];
     }
+    
+    NSString *text = _weiboModel.text;
+    
+    text = [UIUtils parseLink:text];
     
     [_parseText appendString:text];
 }
@@ -152,17 +141,35 @@
     
     
     //---------------微博图片视图_image------------------
-    NSString *thumbnailImage = _weiboModel.thumbnailImage;
-    if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
-        _image.hidden = NO;
-        _image.frame = CGRectMake(10, _textLabel.bottom+10, 70, 80);
-        
-        //加载网络图片数据
-        [_image setImageWithURL:[NSURL URLWithString:thumbnailImage]];
+    if (self.isDetail) {
+        // 中等图
+        NSString *bmiddleImage = _weiboModel.bmiddleImage;
+        if (bmiddleImage != nil && ![@"" isEqualToString:bmiddleImage]) {
+            _image.hidden = NO;
+            _image.frame = CGRectMake(10, _textLabel.bottom+10, 335, 200);
+            
+            //加载网络图片数据
+            [_image setImageWithURL:[NSURL URLWithString:bmiddleImage]];
+        } else {
+            _image.hidden = YES;
+        }
+
     } else {
-        _image.hidden = YES;
+        //缩略图
+        NSString *thumbnailImage = _weiboModel.thumbnailImage;
+        if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
+            _image.hidden = NO;
+            _image.frame = CGRectMake(10, _textLabel.bottom+10, 70, 80);
+            //加载网络图片数据
+            [_image setImageWithURL:[NSURL URLWithString:thumbnailImage]];
+        } else {
+            _image.hidden = YES;
+        }
+
     }
     
+        
+        
     //----------------转发的微博视图背景_repostBackgroudView---------------
     if (self.isRepost) {
         _repostBackgroudView.frame = self.bounds;
@@ -219,10 +226,20 @@
     height += textLabel.optimumSize.height;
     
     //--------------------计算微博图片的高度------------------------
-    NSString *thumbnailImage = weiboModel.thumbnailImage;
-    if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
-        height += (80+10);
+    
+    if (isDetail) {
+        NSString *bmiddleImage = weiboModel.bmiddleImage;
+        if (bmiddleImage != nil && ![@"" isEqualToString:bmiddleImage]) {
+            height += (200+10);
+        }
+    } else {
+        NSString *thumbnailImage = weiboModel.thumbnailImage;
+        if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
+            height += (80+10);
+        }
     }
+    
+    
     
     //--------------------计算转发微博视图的高度------------------------
     //转发的微博

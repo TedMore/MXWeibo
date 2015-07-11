@@ -28,6 +28,12 @@
 		19B6B0221B50C218008B8185 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B01B1B50C218008B8185 /* grayArrow@2x.png */; };
 		19B6B0251B50C25B008B8185 /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0241B50C25B008B8185 /* BaseTableView.m */; };
 		19B6B0281B50C464008B8185 /* WeiboTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0271B50C464008B8185 /* WeiboTableView.m */; };
+		19B6B02C1B511F8F008B8185 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B02A1B511F8F008B8185 /* DetailViewController.m */; };
+		19B6B02D1B511F8F008B8185 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B02B1B511F8F008B8185 /* DetailViewController.xib */; };
+		19B6B0301B51202B008B8185 /* CommentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B02F1B51202B008B8185 /* CommentTableView.m */; };
+		19B6B0331B512077008B8185 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0321B512077008B8185 /* CommentCell.m */; };
+		19B6B0351B51208D008B8185 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0341B51208D008B8185 /* CommentCell.xib */; };
+		19B6B0381B51211C008B8185 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0371B51211C008B8185 /* CommentModel.m */; };
 		19C9CBE01B4FF57300AFA7D0 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9CBC21B4FF57300AFA7D0 /* DDMenuController.m */; };
 		19C9CBE11B4FF57300AFA7D0 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9CBC51B4FF57300AFA7D0 /* RTLabel.m */; };
 		19C9CC171B4FF64600AFA7D0 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C9CBF21B4FF64600AFA7D0 /* 37x-Checkmark.png */; };
@@ -590,6 +596,16 @@
 		19B6B0241B50C25B008B8185 /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
 		19B6B0261B50C464008B8185 /* WeiboTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboTableView.h; sourceTree = "<group>"; };
 		19B6B0271B50C464008B8185 /* WeiboTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboTableView.m; sourceTree = "<group>"; };
+		19B6B0291B511F8F008B8185 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		19B6B02A1B511F8F008B8185 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		19B6B02B1B511F8F008B8185 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		19B6B02E1B51202B008B8185 /* CommentTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableView.h; sourceTree = "<group>"; };
+		19B6B02F1B51202B008B8185 /* CommentTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableView.m; sourceTree = "<group>"; };
+		19B6B0311B512077008B8185 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		19B6B0321B512077008B8185 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		19B6B0341B51208D008B8185 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		19B6B0361B51211C008B8185 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		19B6B0371B51211C008B8185 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		19C9CBC11B4FF57300AFA7D0 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMenuController.h; sourceTree = "<group>"; };
 		19C9CBC21B4FF57300AFA7D0 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		19C9CBC41B4FF57300AFA7D0 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
@@ -1378,6 +1394,8 @@
 				19C9D2051B50056D00AFA7D0 /* WeiboModel.m */,
 				19C9D2071B5005BB00AFA7D0 /* UserModel.h */,
 				19C9D2081B5005BB00AFA7D0 /* UserModel.m */,
+				19B6B0361B51211C008B8185 /* CommentModel.h */,
+				19B6B0371B51211C008B8185 /* CommentModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1451,6 +1469,14 @@
 				19C9D2171B5008BB00AFA7D0 /* LeftViewController.m */,
 				19C9D2191B5008E600AFA7D0 /* RightViewController.h */,
 				19C9D21A1B5008E600AFA7D0 /* RightViewController.m */,
+				19B6B0291B511F8F008B8185 /* DetailViewController.h */,
+				19B6B02A1B511F8F008B8185 /* DetailViewController.m */,
+				19B6B02B1B511F8F008B8185 /* DetailViewController.xib */,
+				19B6B02E1B51202B008B8185 /* CommentTableView.h */,
+				19B6B02F1B51202B008B8185 /* CommentTableView.m */,
+				19B6B0311B512077008B8185 /* CommentCell.h */,
+				19B6B0321B512077008B8185 /* CommentCell.m */,
+				19B6B0341B51208D008B8185 /* CommentCell.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2184,6 +2210,7 @@
 				19FD51F91B5025FD0003EFFF /* 051.gif in Resources */,
 				19FD4FBD1B50259B0003EFFF /* Icon@2x.png in Resources */,
 				19FD4FA91B50259B0003EFFF /* compose_mentionbutton_background.png in Resources */,
+				19B6B0351B51208D008B8185 /* CommentCell.xib in Resources */,
 				19FD51F21B5025FD0003EFFF /* 048@2x.png in Resources */,
 				190CBD421B4FF36A00B7138A /* Main.storyboard in Resources */,
 				19FD52201B5025FD0003EFFF /* 064.gif in Resources */,
@@ -2296,6 +2323,7 @@
 				19FD4FA41B50259B0003EFFF /* compose_keyboardbutton_background_highlighted@2x.png in Resources */,
 				19FD50091B50259B0003EFFF /* tabbar_more_selected.png in Resources */,
 				19FD4FCB1B50259B0003EFFF /* navigationbar_button_delete_background.png in Resources */,
+				19B6B02D1B511F8F008B8185 /* DetailViewController.xib in Resources */,
 				19FD4FB51B50259B0003EFFF /* compose_trendbutton_background_highlighted.png in Resources */,
 				19FD52521B5025FD0003EFFF /* 080@2x.png in Resources */,
 				19FD4FB91B50259B0003EFFF /* fontColor.plist in Resources */,
@@ -2587,6 +2615,7 @@
 				19B6B0281B50C464008B8185 /* WeiboTableView.m in Sources */,
 				19C9CC1B1B4FF64600AFA7D0 /* SDImageCache.m in Sources */,
 				19C9CBE11B4FF57300AFA7D0 /* RTLabel.m in Sources */,
+				19B6B02C1B511F8F008B8185 /* DetailViewController.m in Sources */,
 				19B6B0251B50C25B008B8185 /* BaseTableView.m in Sources */,
 				19C9D2301B500B3A00AFA7D0 /* UIViewExt.m in Sources */,
 				19C9D21B1B5008E600AFA7D0 /* RightViewController.m in Sources */,
@@ -2596,6 +2625,8 @@
 				19B6B0201B50C218008B8185 /* EGORefreshTableHeaderView.m in Sources */,
 				19C9D2271B500A4F00AFA7D0 /* MoreViewController.m in Sources */,
 				19C9D22D1B500AE700AFA7D0 /* UIUtils.m in Sources */,
+				19B6B0381B51211C008B8185 /* CommentModel.m in Sources */,
+				19B6B0331B512077008B8185 /* CommentCell.m in Sources */,
 				19C9D21E1B50098000AFA7D0 /* MessageViewController.m in Sources */,
 				190CBD3F1B4FF36A00B7138A /* MainViewController.m in Sources */,
 				19C9D1EA1B5000C100AFA7D0 /* SinaWeiboRequest.m in Sources */,
@@ -2616,6 +2647,7 @@
 				19B6B0121B50B757008B8185 /* NSString+URLEncoding.m in Sources */,
 				19C9D2001B50046500AFA7D0 /* HomeViewController.m in Sources */,
 				19C9D1F31B5001EF00AFA7D0 /* ThemeButton.m in Sources */,
+				19B6B0301B51202B008B8185 /* CommentTableView.m in Sources */,
 				19C9D2461B50210800AFA7D0 /* JSONKit.m in Sources */,
 				19C9CC1D1B4FF64600AFA7D0 /* SDWebImageManager.m in Sources */,
 				19C9D2031B50050A00AFA7D0 /* MXBaseModel.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "UIUtils.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "RegexKitLite.h"
+#import "NSString+URLEncoding.h"
 
 @implementation UIUtils
 
@@ -47,4 +49,32 @@
     return text;
 }
 
++ (NSString *)parseLink:(NSString *)text {
+    // 表达式
+    NSString *regex = @"(@\\w+)|(#\\w+#)|(http(s)?://([A-Za-z0-9._-]+(/)?)*)";
+    NSArray *matchArray = [text componentsMatchedByRegex:regex];
+    //@用户 http:// #话题#
+    for (NSString *linkString in matchArray) {
+        
+        //三种不同形式的超链接
+        // <a href='user://@用户'></a>
+        // <a href='http://www.baidu.com'>http://www.baidu.com</a>
+        // <a href='topic://#话题#'>#话题#</a>
+        
+        
+        NSString *replacing = nil;
+        if ([linkString hasPrefix:@"@"]) {
+            replacing = [NSString stringWithFormat:@"<a href='user://%@'>%@</a>", [linkString URLEncodedString], linkString];
+        } else if ([linkString hasPrefix:@"http"]) {
+            replacing = [NSString stringWithFormat:@"<a href='%@'>%@</a>", linkString, linkString];
+        } else if ([linkString hasPrefix:@"#"]) {
+            replacing = [NSString stringWithFormat:@"<a href='topic://%@'>%@</a>", [linkString URLEncodedString], linkString];
+        }
+        if (replacing != nil) {
+            text = [text stringByReplacingOccurrencesOfString:linkString withString:replacing];
+        }
+    }
+    return text;
+
+}
 @end

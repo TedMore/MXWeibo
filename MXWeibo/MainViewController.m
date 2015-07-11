@@ -39,7 +39,7 @@
     [self _initTabbarView];
     
     //每60秒请求未读数接口
-    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     
 }
 
@@ -53,7 +53,32 @@
     _badgeView.hidden = !show;
 }
 
+- (void)showTarbar:(BOOL)show {
+    [UIView animateWithDuration:0.35 animations:^{
+        if (show) {
+            _tabbarView.left = 0;
+        } else {
+            _tabbarView.left = -ScreenWidth;
+        }
+    }];
+    
+    [self _resizeView:show];
+}
+
 #pragma mark - UI
+
+- (void)_resizeView:(BOOL)showTabbar {
+    for (UIView *subView in self.view.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"")]) {
+            if (showTabbar) {
+                subView.height = ScreenHeight-49;
+            } else {
+                subView.height = ScreenHeight;
+            }
+        }
+    }
+}
+
 //初始化子控制器
 - (void)_initViewController {
     HomeViewController *home = [[[HomeViewController alloc] init] autorelease];
@@ -68,6 +93,8 @@
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:nav];
         [nav release];
+        
+        nav.delegate = self;
     }
     
     self.viewControllers = viewControllers;
@@ -197,5 +224,16 @@
     NSLog(@"sinaweiboLogInDidCancel");
 }
 
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    //导航控制器子控制器个数
+    int count = (int)navigationController.viewControllers.count;
+    if (count == 2) {
+        [self showTarbar:NO];
+    } else if (count == 1) {
+        [self showTarbar:YES];
+    }
+}
 
 @end

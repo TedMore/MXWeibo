@@ -11,6 +11,7 @@
 #import "UIFactory.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "MainViewController.h"
+#import "DetailViewController.h"
 
 @interface HomeViewController ()
 
@@ -132,7 +133,11 @@
 
 //选中
 - (void)tableView:(BaseTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    WeiboModel *weiboModel = [tableView.data objectAtIndex:indexPath.row];
+    DetailViewController *detailCtrl = [[DetailViewController alloc] init];
+    detailCtrl.weiboModel = weiboModel;
+    [self.navigationController pushViewController:detailCtrl animated:YES];
+    [detailCtrl release];
 }
 
 #pragma mark - Load Data

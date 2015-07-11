@@ -20,4 +20,5 @@
 //格式化日期 Tue May 31 17:46:55 +0800 2011
 + (NSString *)fomateString:(NSString *)datestring;
 
++ (NSString *)parseLink:(NSString *)text;
 @end
