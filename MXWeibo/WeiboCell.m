@@ -113,7 +113,7 @@
     if (ret != nil) {
         _sourceLabel.hidden = NO;
         _sourceLabel.text = [NSString stringWithFormat:@"来自%@", ret];
-        _sourceLabel.frame = CGRectMake(_createLabel.right+60, _createLabel.top, 100, 20);
+        _sourceLabel.frame = CGRectMake(_createLabel.right+(ScreenWidth-_createLabel.right)*2/3 , _createLabel.top, 100, 20);
         [_sourceLabel sizeToFit];
     } else {
         _sourceLabel.hidden = YES;

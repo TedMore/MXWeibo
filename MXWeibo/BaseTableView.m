@@ -38,21 +38,21 @@
     
     
     //尾部视图
-    self.moreButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.moreButton.backgroundColor=[UIColor clearColor];
-    self.moreButton.frame=CGRectMake(0, 0, ScreenWidth, 40);
-    self.moreButton.titleLabel.font=[UIFont systemFontOfSize:16.0f];
-    [self.moreButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.moreButton setTitle:@"上拉加载更多..." forState:UIControlStateNormal];
-    [self.moreButton addTarget:self action:@selector(loadMoreAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.tableFooterView=self.moreButton;
-    
-    UIActivityIndicatorView *activityView=[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    activityView.frame=CGRectMake(100, 10, 20, 20);
-    activityView.tag=2013;
-    [activityView stopAnimating];
-    [self.moreButton addSubview:activityView];
+//    self.moreButton=[UIButton buttonWithType:UIButtonTypeCustom];
+//    self.moreButton.backgroundColor=[UIColor clearColor];
+//    self.moreButton.frame=CGRectMake(0, 0, ScreenWidth, 40);
+//    self.moreButton.titleLabel.font=[UIFont systemFontOfSize:16.0f];
+//    [self.moreButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//    [self.moreButton setTitle:@"上拉加载更多..." forState:UIControlStateNormal];
+//    [self.moreButton addTarget:self action:@selector(loadMoreAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    self.tableFooterView=self.moreButton;
+//    
+//    UIActivityIndicatorView *activityView=[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+//    activityView.frame=CGRectMake(100, 10, 20, 20);
+//    activityView.tag=2013;
+//    [activityView stopAnimating];
+//    [self.moreButton addSubview:activityView];
     
 }
 
@@ -203,7 +203,7 @@
     [self reloadTableViewDataSource];
     
     //停止加载，弹回下拉
-    //[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+//    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
     
     //使用代理
     if ([self.eventDelegate respondsToSelector:@selector(pullDown:)]) {

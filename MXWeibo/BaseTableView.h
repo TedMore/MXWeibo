@@ -45,7 +45,7 @@
 //下拉弹回去
 - (void)doneLoadingTableViewData;
 
-//自动上拉刷新
+//自动下拉刷新
 - (void)autoRefreshData;
 
 @end

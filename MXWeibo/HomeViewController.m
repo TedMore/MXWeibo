@@ -8,7 +8,9 @@
 
 #import "HomeViewController.h"
 #import "WeiboModel.h"
-
+#import "UIFactory.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import "MainViewController.h"
 
 @interface HomeViewController ()
 
@@ -40,6 +42,9 @@
     self.navigationItem.leftBarButtonItem = [logoutItem autorelease];
     
     _tableView = [[WeiboTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-49-44) style:UITableViewStylePlain];
+    
+    _tableView.eventDelegate = self;
+    
     [self.view addSubview:_tableView];
     
     //判断是否认证
@@ -53,58 +58,59 @@
 //显示新微博的数量
 - (void)showNewWeiboCount:(int)count
 {
-//    if (self.barView==nil) {
-//        self.barView=[UIFactory createImageView:@"timeline_new_status_background.png"];
-//        //拉伸图片
-//        UIImage *image=[self.barView.image stretchableImageWithLeftCapWidth:5 topCapHeight:5];
-//        self.barView.image=image;
-//        self.barView.leftCapWidth=5;
-//        self.barView.topCapHeight=5;
-//        self.barView.frame=CGRectMake(5, -40, ScreenWidth-10, 40);
-//        [self.view addSubview:self.barView];
-//        
-//        UILabel *label=[[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-//        label.tag=2013;
-//        label.font=[UIFont systemFontOfSize:16.0f];
-//        label.textColor=[UIColor whiteColor];
-//        label.backgroundColor=[UIColor clearColor];
-//        [self.barView addSubview:label];
-//    }
-//    
-//    if (count>0) {
-//        UILabel *label=(UILabel *)[self.barView viewWithTag:2013];
-//        label.text=[NSString stringWithFormat:@"%d条新微博",count];
-//        [label sizeToFit];
-//        label.origin=CGPointMake((self.barView.width-label.width)/2, (self.barView.height-label.height)/2);
-//        //动画效果
-//        [UIView animateWithDuration:0.6 animations:^{
-//            self.barView.top=5;
-//        } completion:^(BOOL finished){
-//            if (finished) {
-//                [UIView beginAnimations:nil context:nil];
-//                [UIView setAnimationDelay:1];
-//                [UIView setAnimationDuration:0.6];
-//                self.barView.top=-40;
-//                [UIView commitAnimations];
-//            }
-//        }];
-//        
-//        //播放提示声音
-//        NSString *filePath=[[NSBundle mainBundle] pathForResource:@"msgcome" ofType:@"wav"];
-//        NSURL *url=[NSURL fileURLWithPath:filePath];
-//        
-//        //声明系统声音id
-//        SystemSoundID soundId;
-//        //注册系统声音
-//        AudioServicesCreateSystemSoundID((CFURLRef) url, &soundId);
-//        //播放声音
-//        AudioServicesPlaySystemSound(soundId);
-//    }
-//    
-//    //清除TabBar中的未读数量
-//    //或者通过AppDelegate获得MainViewController
-//    MainViewController *mainCtrl=(MainViewController *)self.tabBarController;
-//    [mainCtrl showBadge:NO];
+    if (barView == nil) {
+        barView = [[UIFactory createImageView:@"timeline_new_status_background.png"] retain];
+        //拉伸图片
+        UIImage *image = [barView.image stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+        barView.image = image;
+        barView.leftCapWidth = 5;
+        barView.topCapHeight = 5;
+        barView.frame = CGRectMake(5, -40, ScreenWidth-10, 40);
+        [self.view addSubview:barView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.tag = 2013;
+        label.font = [UIFont systemFontOfSize:16.0f];
+        label.textColor = [UIColor whiteColor];
+        label.backgroundColor = [UIColor clearColor];
+        [barView addSubview:label];
+        [label release];
+    }
+    
+    if (count > 0) {
+        UILabel *label = (UILabel *)[barView viewWithTag:2013];
+        label.text = [NSString stringWithFormat:@"%d条新微博",count];
+        [label sizeToFit];
+        label.origin = CGPointMake((barView.width-label.width)/2, (barView.height-label.height)/2);
+        //动画效果
+        [UIView animateWithDuration:0.6 animations:^{
+            barView.top = 5;
+        } completion:^(BOOL finished){
+            if (finished) {
+                [UIView beginAnimations:nil context:nil];
+                [UIView setAnimationDelay:1];
+                [UIView setAnimationDuration:0.6];
+                barView.top = -40;
+                [UIView commitAnimations];
+            }
+        }];
+        
+        //播放提示声音
+        NSString *filePath=[[NSBundle mainBundle] pathForResource:@"msgcome" ofType:@"wav"];
+        NSURL *url=[NSURL fileURLWithPath:filePath];
+        
+        //声明系统声音id
+        SystemSoundID soundId;
+        //注册系统声音
+        AudioServicesCreateSystemSoundID((CFURLRef)url, &soundId);
+        //播放声音
+        AudioServicesPlaySystemSound(soundId);
+    }
+    
+    //清除TabBar中的未读数量
+    //或者通过AppDelegate获得MainViewController
+    MainViewController *mainCtrl=(MainViewController *)self.tabBarController;
+    [mainCtrl showBadge:NO];
     
     
 }
@@ -114,7 +120,7 @@
 //下拉
 - (void)pullDown:(BaseTableView *)tableView
 {
-    //[tableView performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3];
+    
     [self pullDownData];
 }
 
@@ -148,7 +154,7 @@
 //下拉请求数据
 - (void)pullDownData
 {
-    if (self.topWeiboId.length==0) {
+    if (self.topWeiboId.length == 0) {
         NSLog(@"微博id为空");
         //弹回
         //直接调用doneLoadingTableViewData不起作用，需要延迟1秒以上
@@ -185,24 +191,25 @@
 //下拉加载完成
 - (void)pullDownDataFinish:(id)result
 {
-    NSArray *statuses=[result objectForKey:@"statuses"];
-    NSMutableArray *array=[NSMutableArray arrayWithCapacity:statuses.count];
+    NSArray *statuses = [result objectForKey:@"statuses"];
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:statuses.count];
     
     for (NSDictionary *statuesDic in statuses) {
-        WeiboModel *weibo=[[[WeiboModel alloc] initWithDataDic:statuesDic] autorelease];
+        WeiboModel *weibo=[[WeiboModel alloc] initWithDataDic:statuesDic] ;
         [array addObject:weibo];
     }
     
     //更新最大id
-    if (array.count>0) {
-        WeiboModel *weibo=[array objectAtIndex:0];
-        self.topWeiboId=[weibo.weiboId stringValue];
+    if (array.count > 0) {
+        
+        WeiboModel *weibo =[array objectAtIndex:0];
+        self.topWeiboId = [weibo.weiboId stringValue];
     }
     
     //追加数组
     [array addObjectsFromArray:self.weibos];
-    self.weibos=array;
-    self.tableView.data=array;
+    self.weibos = array;
+    self.tableView.data = array;
     
     //刷新
     [self.tableView reloadData];
@@ -211,8 +218,8 @@
     [self.tableView doneLoadingTableViewData];
     
     //显示刷新了多少条微博
-    //NSLog(@"更新条数：%d",[statuses count]);
-    [self showNewWeiboCount:[statuses count]];
+    int count = (int)[statuses count];
+    [self showNewWeiboCount:count];
 }
 
 //上拉加载完成
@@ -251,7 +258,7 @@
 
 - (void)autorefreshWeibo
 {
-    //下拉
+    //使UI显示下拉
     [self.tableView autoRefreshData];
     //取数据
     [self pullDownData];
@@ -276,6 +283,7 @@
     }
     
     self.tableView.data = weibos;
+    self.weibos = weibos;
     
     if (weibos.count > 0) {
         WeiboModel *topWeibo = [weibos objectAtIndex:0];

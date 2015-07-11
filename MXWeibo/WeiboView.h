@@ -11,8 +11,8 @@
 #import "RTLabel.h"
 
 
-#define kWeibo_Width_List  (320-60) //微博在列表中的宽度
-#define kWeibo_Width_Detail 300     //微博在详情页面的宽度
+#define kWeibo_Width_List  (375-60) //微博在列表中的宽度
+#define kWeibo_Width_Detail 355     //微博在详情页面的宽度
 
 @class WeiboModel;
 @class ThemeImageView;

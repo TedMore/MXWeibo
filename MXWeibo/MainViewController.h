@@ -12,7 +12,10 @@
 @interface MainViewController : UITabBarController<SinaWeiboDelegate> {
     UIView *_tabbarView;
     UIImageView *_sliderView;
+    UIImageView *_badgeView;
 }
+
+- (void)showBadge:(BOOL)show;
 
 @end
 

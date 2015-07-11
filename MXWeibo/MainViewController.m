@@ -14,6 +14,7 @@
 #import "BaseNavigationController.h"
 #import "UIFactory.h"
 #import "ThemeButton.h"
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 
@@ -36,6 +37,10 @@
     
     [self _initViewController];
     [self _initTabbarView];
+    
+    //每60秒请求未读数接口
+    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,6 +49,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)showBadge:(BOOL)show {
+    _badgeView.hidden = !show;
+}
+
+#pragma mark - UI
 //初始化子控制器
 - (void)_initViewController {
     HomeViewController *home = [[[HomeViewController alloc] init] autorelease];
@@ -100,15 +110,70 @@
 
 }
 
+- (void)refreshUnReadView:(NSDictionary *)result {
+    //新浪微博未读数
+    NSNumber *status = [result objectForKey:@"status"];
+    
+    if (_badgeView == nil) {
+        _badgeView = [UIFactory createImageView:@"main_badge.png"];
+        _badgeView.frame = CGRectMake(75-30, 5, 20, 20);
+        [_tabbarView addSubview:_badgeView];
+        
+        UILabel *badgeLabel = [[UILabel alloc] initWithFrame:_badgeView.bounds];
+        badgeLabel.textAlignment = NSTextAlignmentCenter;
+        badgeLabel.backgroundColor = [UIColor clearColor];
+        badgeLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+        badgeLabel.textColor = [UIColor purpleColor];
+        badgeLabel.tag = 100;
+        [_badgeView addSubview:badgeLabel];
+        [badgeLabel release];
+    }
+    
+    int n = [status intValue];
+    if (n > 0) {
+        UILabel *badgeLabel = (UILabel *)[_badgeView viewWithTag:100];
+        if (n > 99) {
+            n = 99;
+        }
+        badgeLabel.text = [NSString stringWithFormat:@"%d", n];
+        _badgeView.hidden = NO;
+    } else {
+        _badgeView.hidden = YES;
+    }
+}
+
+#pragma mark - data
+- (void)loadUnReadData {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    SinaWeibo *sinaweibo = appDelegate.sinaweibo;
+    [sinaweibo requestWithURL:@"remind/unread_count.json"
+                       params:nil
+                   httpMethod:@"GET" block:^(NSDictionary *result) {
+                       [self refreshUnReadView:result];
+                   }];
+}
+
 #pragma mark - actions
 //tab 按钮的点击事件
 - (void)selectedTab:(UIButton *)button {
-    self.selectedIndex = button.tag;
     
     float x = button.left + (button.width-_sliderView.width)/2;
     [UIView animateWithDuration:0.2 animations:^{
         _sliderView.left = x;
     }];
+    
+    //判断是否重复点击tab按钮
+    if (button.tag == self.selectedIndex && button.tag == 0) {
+        UINavigationController *homeNav = [self.viewControllers objectAtIndex:0];
+        HomeViewController *homeCtrl = [homeNav.viewControllers objectAtIndex:0];
+        [homeCtrl autorefreshWeibo];
+    }
+    
+    self.selectedIndex = button.tag;
+}
+
+- (void)timerAction:(NSTimer *)timer {
+    [self loadUnReadData];
 }
 
 #pragma mark - SinaWeibo delegate

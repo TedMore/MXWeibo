@@ -9,8 +9,9 @@
 #import "BaseViewController.h"
 #import "WeiboTableView.h"
 
+@class ThemeImageView;
 @interface HomeViewController : BaseViewController<SinaWeiboRequestDelegate, UITableViewEventDelegate> {
-    
+    ThemeImageView *barView;
 }
 
 
@@ -21,9 +22,6 @@
 @property(nonatomic,copy)NSString *lastWeiboId;
 
 @property(nonatomic,retain)NSMutableArray *weibos;
-
-//显示微博数量的横条
-@property(nonatomic,retain)UIImageView *barView;
 
 //自动刷新微博
 - (void)autorefreshWeibo;
