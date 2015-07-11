@@ -13,14 +13,6 @@
 #endif
 
 
-//获取设备的物理高度
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-
-//获取设备的物理宽度
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-
-
-
 
 //weibo OAuthu2.0
 #define kAppKey @"240541115"

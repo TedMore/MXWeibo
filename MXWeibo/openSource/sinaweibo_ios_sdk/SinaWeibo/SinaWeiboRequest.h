@@ -17,6 +17,9 @@
 
 #import <Foundation/Foundation.h>
 
+//--------------Ted--------------------
+typedef void(^RequestFinishBlock)(id result);
+
 @class SinaWeiboRequest;
 @class SinaWeibo;
 
@@ -52,6 +55,8 @@
 @property (nonatomic, retain) NSDictionary *params;
 @property (nonatomic, assign) id<SinaWeiboRequestDelegate> delegate;
 
+@property(nonatomic,copy)RequestFinishBlock block;
+
 + (SinaWeiboRequest *)requestWithURL:(NSString *)url 
                           httpMethod:(NSString *)httpMethod 
                               params:(NSDictionary *)params
@@ -69,4 +74,9 @@
 - (void)connect;
 - (void)disconnect;
 
+//----------------Ted--------------------
++ (SinaWeiboRequest *)requestWithURL:(NSString *)url
+                          httpMethod:(NSString *)httpMethod
+                              params:(NSDictionary *)params
+                            block:(RequestFinishBlock)block;
 @end

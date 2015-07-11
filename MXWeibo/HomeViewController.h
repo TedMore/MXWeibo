@@ -7,13 +7,26 @@
 //
 
 #import "BaseViewController.h"
+#import "WeiboTableView.h"
 
-#import "BaseViewController.h"
+@interface HomeViewController : BaseViewController<SinaWeiboRequestDelegate, UITableViewEventDelegate> {
+    
+}
 
-@interface HomeViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,SinaWeiboRequestDelegate>
 
+@property (retain, nonatomic) WeiboTableView *tableView;
+//第一条微博id
+@property(nonatomic,copy)NSString *topWeiboId;
+//最后一条微博id
+@property(nonatomic,copy)NSString *lastWeiboId;
 
-@property(nonatomic,retain)NSArray *data;
+@property(nonatomic,retain)NSMutableArray *weibos;
 
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
+//显示微博数量的横条
+@property(nonatomic,retain)UIImageView *barView;
+
+//自动刷新微博
+- (void)autorefreshWeibo;
+//初始加载微博
+- (void)loadWeiboData;
 @end

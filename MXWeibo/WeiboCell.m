@@ -11,6 +11,8 @@
 #import "WeiboView.h"
 #import "WeiboModel.h"
 #import "UIImageView+WebCache.h"
+#import "UIUtils.h"
+#import "RegexKitLite.h"
 
 @implementation WeiboCell
 
@@ -71,6 +73,11 @@
     
     _weiboView = [[WeiboView alloc] initWithFrame:CGRectZero];
     [self.contentView addSubview:_weiboView];
+    
+    //设置选中Cell的背景颜色
+    UIView *selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 0)];
+    selectBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"statusdetail_cell_sepatator"]];
+    self.selectedBackgroundView = selectBackgroundView;
 }
 
 - (void)layoutSubviews {
@@ -85,6 +92,32 @@
     _nickLabel.frame = CGRectMake(50, 5, 200, 20);
     _nickLabel.text = _weiboModel.user.screen_name;
     
+    //发布时间
+    //源日期字符串：Tue May 31 17:46:55 +0800 2011
+    //E M d HH:mm:ss Z yyyy
+    //目标日期字符串：01-23 14:22
+    NSString *createDate = _weiboModel.createDate;
+    if (createDate != nil) {
+        _createLabel.hidden = NO;
+        NSString *dateString = [UIUtils fomateString:createDate];
+        _createLabel.text = dateString;
+        _createLabel.frame = CGRectMake(50, self.height-20, 100, 20);
+        [_createLabel sizeToFit];
+    } else {
+        _createLabel.hidden = YES;
+    }
+    
+    //微博来源
+    NSString *source = _weiboModel.source;
+    NSString *ret = [self parseSource:source];
+    if (ret != nil) {
+        _sourceLabel.hidden = NO;
+        _sourceLabel.text = [NSString stringWithFormat:@"来自%@", ret];
+        _sourceLabel.frame = CGRectMake(_createLabel.right+60, _createLabel.top, 100, 20);
+        [_sourceLabel sizeToFit];
+    } else {
+        _sourceLabel.hidden = YES;
+    }
     
     //微博视图_weiboView
     _weiboView.weiboModel = _weiboModel;
@@ -93,6 +126,21 @@
     _weiboView.frame = CGRectMake(50, _nickLabel.bottom+10, kWeibo_Width_List, h);
     
     
+}
+
+- (NSString *)parseSource:(NSString *)source {
+    NSString *regex = @">\\w+<";
+    NSArray *array = [source componentsMatchedByRegex:regex];
+    if (array.count > 0) {
+        //>新浪微博<
+        NSString *ret = [array objectAtIndex:0];
+        NSRange range;
+        range.location = 1;
+        range.length = ret.length-2;
+        NSString *resultString = [ret substringWithRange:range];
+        return resultString;
+    }
+    return nil;
 }
 
 @end

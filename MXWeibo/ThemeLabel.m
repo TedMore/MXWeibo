@@ -14,7 +14,7 @@
 - (void)dealloc {
     [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_colorName release];
+
 }
 
 - (id)init {

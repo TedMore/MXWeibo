@@ -14,6 +14,20 @@
 		190CBD441B4FF36A00B7138A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190CBD431B4FF36A00B7138A /* Images.xcassets */; };
 		190CBD471B4FF36A00B7138A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190CBD451B4FF36A00B7138A /* LaunchScreen.xib */; };
 		190CBD531B4FF36A00B7138A /* MXWeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 190CBD521B4FF36A00B7138A /* MXWeiboTests.m */; };
+		19B6B00A1B509D35008B8185 /* tabbar_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0081B509D35008B8185 /* tabbar_slider.png */; };
+		19B6B00B1B509D35008B8185 /* tabbar_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0091B509D35008B8185 /* tabbar_slider@2x.png */; };
+		19B6B00D1B50A8B1008B8185 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B00C1B50A8B1008B8185 /* MoreViewController.xib */; };
+		19B6B00F1B50A8C9008B8185 /* ThemeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B00E1B50A8C9008B8185 /* ThemeViewController.xib */; };
+		19B6B0121B50B757008B8185 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0111B50B757008B8185 /* NSString+URLEncoding.m */; };
+		19B6B01C1B50C218008B8185 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0141B50C218008B8185 /* blackArrow.png */; };
+		19B6B01D1B50C218008B8185 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0151B50C218008B8185 /* blackArrow@2x.png */; };
+		19B6B01E1B50C218008B8185 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0161B50C218008B8185 /* blueArrow.png */; };
+		19B6B01F1B50C218008B8185 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B0171B50C218008B8185 /* blueArrow@2x.png */; };
+		19B6B0201B50C218008B8185 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0191B50C218008B8185 /* EGORefreshTableHeaderView.m */; };
+		19B6B0211B50C218008B8185 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B01A1B50C218008B8185 /* grayArrow.png */; };
+		19B6B0221B50C218008B8185 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6B01B1B50C218008B8185 /* grayArrow@2x.png */; };
+		19B6B0251B50C25B008B8185 /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0241B50C25B008B8185 /* BaseTableView.m */; };
+		19B6B0281B50C464008B8185 /* WeiboTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6B0271B50C464008B8185 /* WeiboTableView.m */; };
 		19C9CBE01B4FF57300AFA7D0 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9CBC21B4FF57300AFA7D0 /* DDMenuController.m */; };
 		19C9CBE11B4FF57300AFA7D0 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9CBC51B4FF57300AFA7D0 /* RTLabel.m */; };
 		19C9CC171B4FF64600AFA7D0 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C9CBF21B4FF64600AFA7D0 /* 37x-Checkmark.png */; };
@@ -558,6 +572,24 @@
 		190CBD4C1B4FF36A00B7138A /* MXWeiboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MXWeiboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		190CBD511B4FF36A00B7138A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		190CBD521B4FF36A00B7138A /* MXWeiboTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXWeiboTests.m; sourceTree = "<group>"; };
+		19B6B0081B509D35008B8185 /* tabbar_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_slider.png; sourceTree = "<group>"; };
+		19B6B0091B509D35008B8185 /* tabbar_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_slider@2x.png"; sourceTree = "<group>"; };
+		19B6B00C1B50A8B1008B8185 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
+		19B6B00E1B50A8C9008B8185 /* ThemeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeViewController.xib; sourceTree = "<group>"; };
+		19B6B0101B50B757008B8185 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		19B6B0111B50B757008B8185 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		19B6B0141B50C218008B8185 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		19B6B0151B50C218008B8185 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		19B6B0161B50C218008B8185 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		19B6B0171B50C218008B8185 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		19B6B0181B50C218008B8185 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		19B6B0191B50C218008B8185 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		19B6B01A1B50C218008B8185 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		19B6B01B1B50C218008B8185 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		19B6B0231B50C25B008B8185 /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
+		19B6B0241B50C25B008B8185 /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
+		19B6B0261B50C464008B8185 /* WeiboTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboTableView.h; sourceTree = "<group>"; };
+		19B6B0271B50C464008B8185 /* WeiboTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboTableView.m; sourceTree = "<group>"; };
 		19C9CBC11B4FF57300AFA7D0 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMenuController.h; sourceTree = "<group>"; };
 		19C9CBC21B4FF57300AFA7D0 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		19C9CBC41B4FF57300AFA7D0 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
@@ -1223,9 +1255,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		19B6B0131B50C218008B8185 /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				19B6B0141B50C218008B8185 /* blackArrow.png */,
+				19B6B0151B50C218008B8185 /* blackArrow@2x.png */,
+				19B6B0161B50C218008B8185 /* blueArrow.png */,
+				19B6B0171B50C218008B8185 /* blueArrow@2x.png */,
+				19B6B0181B50C218008B8185 /* EGORefreshTableHeaderView.h */,
+				19B6B0191B50C218008B8185 /* EGORefreshTableHeaderView.m */,
+				19B6B01A1B50C218008B8185 /* grayArrow.png */,
+				19B6B01B1B50C218008B8185 /* grayArrow@2x.png */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
 		19C9CBBF1B4FF57300AFA7D0 /* openSource */ = {
 			isa = PBXGroup;
 			children = (
+				19B6B0101B50B757008B8185 /* NSString+URLEncoding.h */,
+				19B6B0111B50B757008B8185 /* NSString+URLEncoding.m */,
+				19B6B0131B50C218008B8185 /* EGOTableViewPullRefresh */,
 				19C9D2101B50072300AFA7D0 /* RegexKitLite */,
 				19C9D1D91B5000C100AFA7D0 /* sinaweibo_ios_sdk */,
 				19C9CBF11B4FF64600AFA7D0 /* MBProgressHUD */,
@@ -1339,6 +1389,8 @@
 				19C9D1D71B50004900AFA7D0 /* BaseViewController.m */,
 				19C9D23C1B50107900AFA7D0 /* BaseNavigationController.h */,
 				19C9D23D1B50107900AFA7D0 /* BaseNavigationController.m */,
+				19B6B0231B50C25B008B8185 /* BaseTableView.h */,
+				19B6B0241B50C25B008B8185 /* BaseTableView.m */,
 			);
 			name = BaseView;
 			sourceTree = "<group>";
@@ -1348,8 +1400,10 @@
 			children = (
 				19C9D2251B500A4F00AFA7D0 /* MoreViewController.h */,
 				19C9D2261B500A4F00AFA7D0 /* MoreViewController.m */,
+				19B6B00C1B50A8B1008B8185 /* MoreViewController.xib */,
 				19C9D2281B500A8700AFA7D0 /* ThemeViewController.h */,
 				19C9D2291B500A8700AFA7D0 /* ThemeViewController.m */,
+				19B6B00E1B50A8C9008B8185 /* ThemeViewController.xib */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -1384,13 +1438,15 @@
 		19C9D1D31B4FFD4D00AFA7D0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				19C9D1FE1B50046500AFA7D0 /* HomeViewController.h */,
+				19C9D1FF1B50046500AFA7D0 /* HomeViewController.m */,
+				19C9D23F1B50137D00AFA7D0 /* HomeViewController.xib */,
 				19C9D20D1B5006A100AFA7D0 /* WeiboView.h */,
 				19C9D20E1B5006A100AFA7D0 /* WeiboView.m */,
 				19C9D20A1B50069800AFA7D0 /* WeiboCell.h */,
 				19C9D20B1B50069800AFA7D0 /* WeiboCell.m */,
-				19C9D1FE1B50046500AFA7D0 /* HomeViewController.h */,
-				19C9D1FF1B50046500AFA7D0 /* HomeViewController.m */,
-				19C9D23F1B50137D00AFA7D0 /* HomeViewController.xib */,
+				19B6B0261B50C464008B8185 /* WeiboTableView.h */,
+				19B6B0271B50C464008B8185 /* WeiboTableView.m */,
 				19C9D2161B5008BB00AFA7D0 /* LeftViewController.h */,
 				19C9D2171B5008BB00AFA7D0 /* LeftViewController.m */,
 				19C9D2191B5008E600AFA7D0 /* RightViewController.h */,
@@ -1463,6 +1519,8 @@
 		19FD4EFC1B50259A0003EFFF /* image */ = {
 			isa = PBXGroup;
 			children = (
+				19B6B0081B509D35008B8185 /* tabbar_slider.png */,
+				19B6B0091B509D35008B8185 /* tabbar_slider@2x.png */,
 				19FD52A01B5026300003EFFF /* Skins */,
 				19FD50291B5025FB0003EFFF /* face */,
 				19FD4EFD1B50259A0003EFFF /* btn_map_location.png */,
@@ -2099,6 +2157,7 @@
 				19FD528B1B5025FD0003EFFF /* 099@2x.png in Resources */,
 				19FD523F1B5025FD0003EFFF /* 074.png in Resources */,
 				19FD4FBB1B50259B0003EFFF /* group_btn_write_on@2x.png in Resources */,
+				19B6B00F1B50A8C9008B8185 /* ThemeViewController.xib in Resources */,
 				19FD51991B5025FD0003EFFF /* 019.gif in Resources */,
 				19FD52961B5025FD0003EFFF /* 103.png in Resources */,
 				19FD4F991B50259B0003EFFF /* compose_checkbox.png in Resources */,
@@ -2263,6 +2322,7 @@
 				19FD4FFE1B50259B0003EFFF /* tabbar_home_selected@2x.png in Resources */,
 				19FD50021B50259B0003EFFF /* tabbar_message_center_highlighted@2x.png in Resources */,
 				19FD52891B5025FD0003EFFF /* 099.gif in Resources */,
+				19B6B0211B50C218008B8185 /* grayArrow.png in Resources */,
 				19FD51C41B5025FD0003EFFF /* 033.png in Resources */,
 				19FD51F11B5025FD0003EFFF /* 048.png in Resources */,
 				19FD524C1B5025FD0003EFFF /* 078@2x.png in Resources */,
@@ -2298,6 +2358,7 @@
 				19FD52451B5025FD0003EFFF /* 076.png in Resources */,
 				19FD4FF81B50259B0003EFFF /* tabbar_discover_selected@2x.png in Resources */,
 				19FD4FC51B50259B0003EFFF /* navigationbar_back_highlighted.png in Resources */,
+				19B6B01D1B50C218008B8185 /* blackArrow@2x.png in Resources */,
 				19FD4FE81B50259B0003EFFF /* profile_button3_1@2x.png in Resources */,
 				19C9D2141B50072300AFA7D0 /* RegexKitLite.html in Resources */,
 				19FD51761B5025FC0003EFFF /* 006@2x.png in Resources */,
@@ -2332,6 +2393,7 @@
 				19FD51E41B5025FD0003EFFF /* 044.gif in Resources */,
 				19FD4FB81B50259B0003EFFF /* discover_default@2x.png in Resources */,
 				19FD523C1B5025FD0003EFFF /* 073.png in Resources */,
+				19B6B00B1B509D35008B8185 /* tabbar_slider@2x.png in Resources */,
 				19FD51AB1B5025FD0003EFFF /* 025.gif in Resources */,
 				19FD51D71B5025FD0003EFFF /* 039@2x.png in Resources */,
 				19FD52181B5025FD0003EFFF /* 061.png in Resources */,
@@ -2340,6 +2402,7 @@
 				19FD52661B5025FD0003EFFF /* 087.png in Resources */,
 				19FD4FED1B50259B0003EFFF /* statusdetail_cell_sepatator.png in Resources */,
 				19FD4FD51B50259B0003EFFF /* nearby_map_content.png in Resources */,
+				19B6B0221B50C218008B8185 /* grayArrow@2x.png in Resources */,
 				19FD51D11B5025FD0003EFFF /* 037@2x.png in Resources */,
 				19FD518B1B5025FD0003EFFF /* 014.png in Resources */,
 				19FD51DC1B5025FD0003EFFF /* 041.png in Resources */,
@@ -2366,6 +2429,7 @@
 				19FD528C1B5025FD0003EFFF /* 100.gif in Resources */,
 				19FD525E1B5025FD0003EFFF /* 084@2x.png in Resources */,
 				19FD52591B5025FD0003EFFF /* 083.gif in Resources */,
+				19B6B01E1B50C218008B8185 /* blueArrow.png in Resources */,
 				19FD52881B5025FD0003EFFF /* 098@2x.png in Resources */,
 				19FD4FAC1B50259B0003EFFF /* compose_mentionbutton_background_highlighted@2x.png in Resources */,
 				19FD52941B5025FD0003EFFF /* 102@2x.png in Resources */,
@@ -2386,6 +2450,7 @@
 				19FD52501B5025FD0003EFFF /* 080.gif in Resources */,
 				19FD51A21B5025FD0003EFFF /* 022.gif in Resources */,
 				19FD518C1B5025FD0003EFFF /* 014@2x.png in Resources */,
+				19B6B01C1B50C218008B8185 /* blackArrow.png in Resources */,
 				19FD4FFD1B50259B0003EFFF /* tabbar_home_selected.png in Resources */,
 				19FD52581B5025FD0003EFFF /* 082@2x.png in Resources */,
 				19FD51B51B5025FD0003EFFF /* 028.png in Resources */,
@@ -2423,6 +2488,7 @@
 				19FD51821B5025FD0003EFFF /* 010@2x.png in Resources */,
 				19FD529D1B5025FD0003EFFF /* emoticon_keyboard_magnifier.png in Resources */,
 				19FD4FD91B50259B0003EFFF /* newbar_icon_1.png in Resources */,
+				19B6B00D1B50A8B1008B8185 /* MoreViewController.xib in Resources */,
 				19FD51F31B5025FD0003EFFF /* 049.gif in Resources */,
 				19FD52001B5025FD0003EFFF /* 053.png in Resources */,
 				19FD51FF1B5025FD0003EFFF /* 053.gif in Resources */,
@@ -2443,6 +2509,7 @@
 				19FD527A1B5025FD0003EFFF /* 094.gif in Resources */,
 				19FD52041B5025FD0003EFFF /* 054@2x.png in Resources */,
 				19FD51971B5025FD0003EFFF /* 018.png in Resources */,
+				19B6B01F1B50C218008B8185 /* blueArrow@2x.png in Resources */,
 				19FD501B1B50259B0003EFFF /* timeline_retweet_background.png in Resources */,
 				19FD50211B50259B0003EFFF /* userinfo_apps_background_highlighted@2x.png in Resources */,
 				19FD51651B5025FC0003EFFF /* 001.gif in Resources */,
@@ -2473,6 +2540,7 @@
 				19FD52271B5025FD0003EFFF /* 066.png in Resources */,
 				19FD4FE41B50259B0003EFFF /* page_image_loading@2x.png in Resources */,
 				19FD52311B5025FD0003EFFF /* 069@2x.png in Resources */,
+				19B6B00A1B509D35008B8185 /* tabbar_slider.png in Resources */,
 				19FD52241B5025FD0003EFFF /* 065.png in Resources */,
 				19FD51701B5025FC0003EFFF /* 004@2x.png in Resources */,
 				19FD4FA71B50259B0003EFFF /* compose_locatebutton_background_highlighted.png in Resources */,
@@ -2516,13 +2584,16 @@
 				19C9D2391B500C2B00AFA7D0 /* CustomCatagory.m in Sources */,
 				19C9D2211B5009ED00AFA7D0 /* ProfileViewController.m in Sources */,
 				19C9D23E1B50107900AFA7D0 /* BaseNavigationController.m in Sources */,
+				19B6B0281B50C464008B8185 /* WeiboTableView.m in Sources */,
 				19C9CC1B1B4FF64600AFA7D0 /* SDImageCache.m in Sources */,
 				19C9CBE11B4FF57300AFA7D0 /* RTLabel.m in Sources */,
+				19B6B0251B50C25B008B8185 /* BaseTableView.m in Sources */,
 				19C9D2301B500B3A00AFA7D0 /* UIViewExt.m in Sources */,
 				19C9D21B1B5008E600AFA7D0 /* RightViewController.m in Sources */,
 				19C9D22A1B500A8700AFA7D0 /* ThemeViewController.m in Sources */,
 				19C9D2241B500A1B00AFA7D0 /* DiscoverViewController.m in Sources */,
 				19C9D1D81B50004900AFA7D0 /* BaseViewController.m in Sources */,
+				19B6B0201B50C218008B8185 /* EGORefreshTableHeaderView.m in Sources */,
 				19C9D2271B500A4F00AFA7D0 /* MoreViewController.m in Sources */,
 				19C9D22D1B500AE700AFA7D0 /* UIUtils.m in Sources */,
 				19C9D21E1B50098000AFA7D0 /* MessageViewController.m in Sources */,
@@ -2542,6 +2613,7 @@
 				19C9D1F61B50024400AFA7D0 /* ThemeManager.m in Sources */,
 				19C9D1E91B5000C100AFA7D0 /* SinaWeiboAuthorizeView.m in Sources */,
 				19C9D1EE1B50016400AFA7D0 /* UIFactory.m in Sources */,
+				19B6B0121B50B757008B8185 /* NSString+URLEncoding.m in Sources */,
 				19C9D2001B50046500AFA7D0 /* HomeViewController.m in Sources */,
 				19C9D1F31B5001EF00AFA7D0 /* ThemeButton.m in Sources */,
 				19C9D2461B50210800AFA7D0 /* JSONKit.m in Sources */,

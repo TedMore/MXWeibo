@@ -127,13 +127,13 @@
             {
                 NSData* imageData = UIImagePNGRepresentation((UIImage *)dataParam);
                 [self appendUTF8Body:body dataString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"file\"\r\n", key]];
-                [self appendUTF8Body:body dataString:@"Content-Type: image/png\r\nContent-Transfer-Encoding: binary\r\n\r\n"];
+                [self appendUTF8Body:body dataString:[NSString stringWithString:@"Content-Type: image/png\r\nContent-Transfer-Encoding: binary\r\n\r\n"]];
                 [body appendData:imageData];
             } 
             else if ([dataParam isKindOfClass:[NSData class]]) 
             {
                 [self appendUTF8Body:body dataString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"file\"\r\n", key]];
-                [self appendUTF8Body:body dataString:@"Content-Type: content/unknown\r\nContent-Transfer-Encoding: binary\r\n\r\n"];
+                [self appendUTF8Body:body dataString:[NSString stringWithString:@"Content-Type: content/unknown\r\nContent-Transfer-Encoding: binary\r\n\r\n"]];
                 [body appendData:(NSData*)dataParam];
             }
             [self appendUTF8Body:body dataString:bodySuffixString];
@@ -194,6 +194,12 @@
             if ([delegate respondsToSelector:@selector(request:didFinishLoadingWithResult:)])
             {
                 [delegate request:self didFinishLoadingWithResult:(result == nil ? data : result)];
+            }
+            //-----------------Ted---------
+            // 调用block
+            if (self.block) {
+                self.block(result == nil ? data : result);
+                Block_release(self.block);
             }
         }
 	}
@@ -415,6 +421,19 @@
 	connection = nil;
     
     [sinaweibo requestDidFinish:self];
+}
+
+//---------------Ted---------------
++ (SinaWeiboRequest *)requestWithURL:(NSString *)url
+                          httpMethod:(NSString *)httpMethod
+                              params:(NSDictionary *)params
+                            block:(RequestFinishBlock)block
+{
+    SinaWeiboRequest *request = [self requestWithURL:url httpMethod:httpMethod params:params delegate:nil];
+    request.block = block;
+  
+
+    return request;
 }
 
 @end

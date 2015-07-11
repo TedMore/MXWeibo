@@ -24,8 +24,19 @@
 #import "UIViewExt.h"
 
 
+//获取设备的物理高度
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+//获取设备的物理宽度
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
 
+
+#ifdef DEBUG
+#define NSLog NSLog(@"<---%s---line: %d--->",strrchr(__FILE__,'/'),__LINE__);NSLog
+#else
+#define NSLog //NSLog(@"<---%s---line: %d--->",strrchr(__FILE__,'/'),__LINE__);NSLog
+#endif
 
 
 

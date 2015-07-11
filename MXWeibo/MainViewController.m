@@ -5,7 +5,6 @@
 //  Created by TedChen on 7/10/15.
 //  Copyright (c) 2015 LEON. All rights reserved.
 //
-
 #import "MainViewController.h"
 #import "HomeViewController.h"
 #import "MessageViewController.h"
@@ -15,7 +14,6 @@
 #import "BaseNavigationController.h"
 #import "UIFactory.h"
 #import "ThemeButton.h"
-#include "CONSTS.h"
 
 @interface MainViewController ()
 
@@ -61,14 +59,13 @@
         [viewControllers addObject:nav];
         [nav release];
     }
-
     
     self.viewControllers = viewControllers;
 }
 
 //创建自定义tabBar
 - (void)_initTabbarView {
-    _tabbarView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeight-49-20, ScreenWidth, 49)];
+    _tabbarView = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeight-49, ScreenWidth, 49)];
     //    _tabbarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_background.png"]];
     [self.view addSubview:_tabbarView];
     
@@ -84,9 +81,12 @@
         NSString *backImage = backgroud[i];
         NSString *heightImage = heightBackground[i];
         
-        //        ThemeButton *button = [[ThemeButton alloc] initWithImage:backImage highlighted:heightImage];
-        UIButton *button = [UIFactory createButton:backImage highlighted:heightImage];
-        button.frame = CGRectMake((64-30)/2+(i*64), (49-30)/2, 30, 30);
+        ThemeButton *button = [[ThemeButton alloc] initWithImage:backImage highlighted:heightImage];
+        // 点击后高亮效果
+        button.showsTouchWhenHighlighted = YES;
+        //        UIButton *button = [UIFactory createButton:backImage highlighted:heightImage];
+        
+        button.frame = CGRectMake((ScreenWidth/5-30)/2+(i*ScreenWidth/5), (49-30)/2, 30, 30);
         button.tag = i;
         [button addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
         [_tabbarView addSubview:button];
@@ -94,8 +94,10 @@
     
     _sliderView = [[UIFactory createImageView:@"tabbar_slider.png"] retain];
     _sliderView.backgroundColor = [UIColor clearColor];
-    _sliderView.frame = CGRectMake((64-15)/2, 5, 15, 44);
+    _sliderView.frame = CGRectMake((ScreenWidth/5-15)/2, 5, 15, 44);
     [_tabbarView addSubview:_sliderView];
+    
+
 }
 
 #pragma mark - actions
