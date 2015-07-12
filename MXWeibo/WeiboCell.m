@@ -124,7 +124,8 @@
     //获取微博视图的高度
     float h = [WeiboView getWeiboViewHeight:_weiboModel isRepost:NO isDetail:NO];
     _weiboView.frame = CGRectMake(50, _nickLabel.bottom+10, kWeibo_Width_List, h);
-    
+    //调用WeiboView的重新布局方法
+    [_weiboView setNeedsLayout];
     
 }
 

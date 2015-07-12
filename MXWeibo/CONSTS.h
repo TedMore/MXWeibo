@@ -29,8 +29,15 @@
 #define kThemeListLabel          @"kThemeListLabel"
 
 
+//----用于存储的keys----
 #define kThemeName @"kThemeName"
+#define kBrowMode @"kBrowMode"
 
+#define LargeBrowMode 1 //大图浏览模式
+#define SmallBrowMode 2 //小图浏览模式
+
+//----大图还是小图通知----
+#define kReloadWeiboTableNotification @"kReloadWeiboTableNotification"
 
 
 

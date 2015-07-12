@@ -86,6 +86,8 @@
 		19C9D2401B50137D00AFA7D0 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C9D23F1B50137D00AFA7D0 /* HomeViewController.xib */; };
 		19C9D2421B501B5700AFA7D0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C9D2411B501B5700AFA7D0 /* libicucore.dylib */; };
 		19C9D2461B50210800AFA7D0 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9D2451B50210800AFA7D0 /* JSONKit.m */; };
+		19EE3B8D1B5267D30028EA74 /* BrowModeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EE3B8B1B5267D30028EA74 /* BrowModeController.m */; };
+		19EE3B8E1B5267D30028EA74 /* BrowModeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EE3B8C1B5267D30028EA74 /* BrowModeController.xib */; };
 		19FD4F931B50259B0003EFFF /* btn_map_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 19FD4EFD1B50259A0003EFFF /* btn_map_location.png */; };
 		19FD4F941B50259B0003EFFF /* btn_map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19FD4EFE1B50259B0003EFFF /* btn_map_location@2x.png */; };
 		19FD4F951B50259B0003EFFF /* compose_camerabutton_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 19FD4EFF1B50259B0003EFFF /* compose_camerabutton_background.png */; };
@@ -702,6 +704,9 @@
 		19C9D2411B501B5700AFA7D0 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		19C9D2441B50210800AFA7D0 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		19C9D2451B50210800AFA7D0 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		19EE3B8A1B5267D30028EA74 /* BrowModeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowModeController.h; sourceTree = "<group>"; };
+		19EE3B8B1B5267D30028EA74 /* BrowModeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowModeController.m; sourceTree = "<group>"; };
+		19EE3B8C1B5267D30028EA74 /* BrowModeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowModeController.xib; sourceTree = "<group>"; };
 		19FD4EFD1B50259A0003EFFF /* btn_map_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_map_location.png; sourceTree = "<group>"; };
 		19FD4EFE1B50259B0003EFFF /* btn_map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_map_location@2x.png"; sourceTree = "<group>"; };
 		19FD4EFF1B50259B0003EFFF /* compose_camerabutton_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose_camerabutton_background.png; sourceTree = "<group>"; };
@@ -1422,6 +1427,9 @@
 				19C9D2281B500A8700AFA7D0 /* ThemeViewController.h */,
 				19C9D2291B500A8700AFA7D0 /* ThemeViewController.m */,
 				19B6B00E1B50A8C9008B8185 /* ThemeViewController.xib */,
+				19EE3B8A1B5267D30028EA74 /* BrowModeController.h */,
+				19EE3B8B1B5267D30028EA74 /* BrowModeController.m */,
+				19EE3B8C1B5267D30028EA74 /* BrowModeController.xib */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -2363,6 +2371,7 @@
 				19FD4FEC1B50259B0003EFFF /* queue_statusbar_progress@2x.png in Resources */,
 				19FD516E1B5025FC0003EFFF /* 004.gif in Resources */,
 				19FD4FB61B50259B0003EFFF /* compose_trendbutton_background_highlighted@2x.png in Resources */,
+				19EE3B8E1B5267D30028EA74 /* BrowModeController.xib in Resources */,
 				19FD51F81B5025FD0003EFFF /* 050@2x.png in Resources */,
 				19FD51FB1B5025FD0003EFFF /* 051@2x.png in Resources */,
 				19FD4FDB1B50259B0003EFFF /* newbar_icon_2.png in Resources */,
@@ -2610,6 +2619,7 @@
 			files = (
 				19C9D2091B5005BB00AFA7D0 /* UserModel.m in Sources */,
 				19C9D2391B500C2B00AFA7D0 /* CustomCatagory.m in Sources */,
+				19EE3B8D1B5267D30028EA74 /* BrowModeController.m in Sources */,
 				19C9D2211B5009ED00AFA7D0 /* ProfileViewController.m in Sources */,
 				19C9D23E1B50107900AFA7D0 /* BaseNavigationController.m in Sources */,
 				19B6B0281B50C464008B8185 /* WeiboTableView.m in Sources */,

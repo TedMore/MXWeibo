@@ -39,7 +39,7 @@
     [self _initTabbarView];
     
     //每60秒请求未读数接口
-    [NSTimer scheduledTimerWithTimeInterval:3600 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     
 }
 
@@ -81,13 +81,13 @@
 
 //初始化子控制器
 - (void)_initViewController {
-    HomeViewController *home = [[[HomeViewController alloc] init] autorelease];
+    _homeCtrl = [[HomeViewController alloc] init];
     MessageViewController *message = [[[MessageViewController alloc] init] autorelease];
     ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
     DiscoverViewController *discover = [[[DiscoverViewController alloc] init] autorelease];
     MoreViewController *more = [[[MoreViewController alloc] init] autorelease];
     
-    NSArray *views = @[home,message,profile,discover,more];
+    NSArray *views = @[_homeCtrl,message,profile,discover,more];
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:5];
     for (UIViewController *viewController in views) {
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:viewController];
@@ -191,9 +191,9 @@
     
     //判断是否重复点击tab按钮
     if (button.tag == self.selectedIndex && button.tag == 0) {
-        UINavigationController *homeNav = [self.viewControllers objectAtIndex:0];
-        HomeViewController *homeCtrl = [homeNav.viewControllers objectAtIndex:0];
-        [homeCtrl autorefreshWeibo];
+//        UINavigationController *homeNav = [self.viewControllers objectAtIndex:0];
+//        HomeViewController *homeCtrl = [homeNav.viewControllers objectAtIndex:0];
+        [_homeCtrl autorefreshWeibo];
     }
     
     self.selectedIndex = button.tag;
@@ -204,6 +204,7 @@
 }
 
 #pragma mark - SinaWeibo delegate
+//登录成功协议方法
 - (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo {
     //保存认证的数据到本地
     NSDictionary *authData = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -213,11 +214,14 @@
                               sinaweibo.refreshToken, @"refresh_token", nil];
     [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"SinaWeiboAuthData"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [_homeCtrl loadWeiboData];
 }
-
+//注销后调用协议方法
 - (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo {
     //移除认证的数据
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAuthData"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)sinaweiboLogInDidCancel:(SinaWeibo *)sinaweibo {

@@ -52,6 +52,9 @@
     if (self.sinaweibo.isAuthValid) {
         //加载微博列表数据
         [self loadWeiboData];
+    } else {
+        // 登录
+        [self.sinaweibo logIn];
     }
 }
 
@@ -179,7 +182,7 @@
 //上拉请求数据
 - (void)pullUpData
 {
-    if (self.lastWeiboId.length==0) {
+    if (self.lastWeiboId.length == 0) {
         NSLog(@"微博id为空");
         return;
     }
@@ -247,15 +250,17 @@
         self.lastWeiboId = [weibo.weiboId stringValue];
     }
     
+    //追加数组
+    [self.weibos addObjectsFromArray:array];
+    self.tableView.data = self.weibos;
+    
+    //更新UI
     if (statuses.count >= 20) {
         self.tableView.isMore = YES;
     }else{
         self.tableView.isMore = NO;
     }
-    
-    //追加数组
-    [self.weibos addObjectsFromArray:array];
-    self.tableView.data = self.weibos;
+
     
     //刷新
     [self.tableView reloadData];
@@ -266,6 +271,7 @@
 {
     //使UI显示下拉
     [self.tableView autoRefreshData];
+    self.tableView.hidden = NO;
     //取数据
     [self pullDownData];
 }
@@ -302,6 +308,12 @@
         
         WeiboModel *lastWeibo = [weibos lastObject];
         self.lastWeiboId = [lastWeibo.weiboId stringValue];
+    }
+    
+    if (weibos.count >= 20) {
+        self.tableView.isMore=YES;
+    }else{
+        self.tableView.isMore=NO;
     }
     
     //刷新tableView

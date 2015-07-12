@@ -17,7 +17,7 @@
 {
     self=[super initWithFrame:frame style:style];
     if (self) {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:kReloadWeiboTableNotification object:nil];
     }
     return self;
 }

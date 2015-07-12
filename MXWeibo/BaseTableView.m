@@ -143,7 +143,7 @@
             _moreButton.enabled = NO;
         }
         
-    }else{
+    } else {
         _moreButton.hidden = YES;
     }
     
