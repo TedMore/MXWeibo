@@ -39,7 +39,7 @@
     [self _initTabbarView];
     
     //每60秒请求未读数接口
-    [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:3600 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     
 }
 

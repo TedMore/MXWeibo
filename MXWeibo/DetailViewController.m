@@ -76,7 +76,7 @@
 //    [tableHeaderView addSubview:separatorImage];
 //    [separatorImage release];
 
-    tableHeaderView.height += (h+10);
+    tableHeaderView.height += (_userBarView.height+h+10);
     self.tableView.tableHeaderView = tableHeaderView;
     [tableHeaderView release];
     
@@ -127,6 +127,8 @@
     }
     
     self.tableView.data = comments;
+    //评论数
+    self.tableView.commentDic = result;
     
     //刷新
     [self.tableView reloadData];

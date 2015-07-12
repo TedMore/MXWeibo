@@ -34,7 +34,7 @@
                     </state>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userinfo_header_separator.png" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-fz-ONQ">
-                    <rect key="frame" x="0.0" y="59" width="375" height="1"/>
+                    <rect key="frame" x="5" y="59" width="385" height="1"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -45,7 +45,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="stm-Se-9qB" customClass="CommentTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="stm-Se-9qB" customClass="CommentTableView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -55,6 +55,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="stm-Se-9qB" secondAttribute="bottom" id="Oeg-zZ-CzC"/>
+                <constraint firstItem="stm-Se-9qB" firstAttribute="leading" secondItem="8iF-jP-0lG" secondAttribute="leading" id="TlV-KV-8IK"/>
+                <constraint firstItem="stm-Se-9qB" firstAttribute="top" secondItem="8iF-jP-0lG" secondAttribute="top" id="j7L-S3-sBY"/>
+                <constraint firstAttribute="trailing" secondItem="stm-Se-9qB" secondAttribute="trailing" id="vkz-DP-0EX"/>
+            </constraints>
         </view>
     </objects>
     <resources>
