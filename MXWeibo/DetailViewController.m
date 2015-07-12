@@ -66,7 +66,7 @@
     float h = [WeiboView getWeiboViewHeight:self.weiboModel isRepost:NO isDetail:YES];
     _weiboView=[[WeiboView alloc] initWithFrame:CGRectMake(10, _userBarView.bottom+10, ScreenWidth-20, h)];
     _weiboView.isDetail = YES;
-    _weiboView.weiboModel = self.weiboModel;
+    _weiboView.weiboModel = _weiboModel;
     [tableHeaderView addSubview:_weiboView];
     
     
@@ -76,8 +76,9 @@
 //    [tableHeaderView addSubview:separatorImage];
 //    [separatorImage release];
 
-    tableHeaderView.height += (_userBarView.height+h+10);
+    tableHeaderView.height += (60+h+10);
     self.tableView.tableHeaderView = tableHeaderView;
+    self.tableView.eventDelegate = self;
     [tableHeaderView release];
     
 }
@@ -126,7 +127,21 @@
         [commentModel release];
     }
     
+    if (array.count >= 20) {
+        self.tableView.isMore = YES;
+    } else {
+        self.tableView.isMore = NO;
+    }
+    
+    
+    if (array.count > 0) {
+        CommentModel *lastComment = [comments lastObject];
+        self.lastCommentId = [lastComment.id stringValue];
+    }
+    
     self.tableView.data = comments;
+    self.comments = comments;
+    
     //评论数
     self.tableView.commentDic = result;
     
@@ -150,26 +165,24 @@
 //上拉请求数据
 - (void)pullUpData
 {
-    if (self.lastCommentId.length==0) {
+    if (self.lastCommentId.length == 0) {
         NSLog(@"评论id为空");
         return;
     }
     
-    NSString *weiboId=[self.weiboModel.weiboId stringValue];
+    NSString *weiboId = [self.weiboModel.weiboId stringValue];
     if (weiboId.length==0) {
         return;
     }
     
-    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"20",@"count",weiboId,@"id",self.lastCommentId,@"max_id",nil];
-    /*
-     SinaWeiboRequest *request=[self.sinaweibo requestWithURL:@"comments/show.json"
-     params:params
-     httpMethod:@"GET"
-     block:^(id result){
-     [self pullUpDataFinish:result];
-     }];
-     [self.requests addObject:request];
-     */
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"20",@"count",weiboId,@"id",self.lastCommentId,@"max_id",nil];
+    
+     [self.sinaweibo requestWithURL:@"comments/show.json"
+                             params:params
+                         httpMethod:@"GET" block:^(id result){
+                             [self pullUpDataFinish:result];
+                         }];
+    
 //    ASIHTTPRequest *request=[DataService requestWithURL:@"comments/show.json" params:params httpMethod:@"GET" completeBlock:^(id result) {
 //        [self pullUpDataFinish:result];
 //    }];
@@ -178,30 +191,30 @@
 
 - (void)pullUpDataFinish:(id)result
 {
-    NSArray *commentList=[result objectForKey:@"comments"];
-    NSMutableArray *comments=[NSMutableArray arrayWithCapacity:commentList.count];
+    NSArray *array = [result objectForKey:@"comments"];
+    NSMutableArray *comments = [NSMutableArray arrayWithCapacity:array.count];
     
-    for (NSDictionary *commentDic in commentList) {
-        CommentModel *comment=[[[CommentModel alloc] initWithDataDic:commentDic] autorelease];
+    for (NSDictionary *commentDic in array) {
+        CommentModel *comment = [[CommentModel alloc] initWithDataDic:commentDic];
         [comments addObject:comment];
     }
     
-    if (commentList.count>=20) {
-        self.tableView.isMore=YES;
+    if (array.count >= 20) {
+        self.tableView.isMore = YES;
     }else{
-        self.tableView.isMore=NO;
+        self.tableView.isMore = NO;
     }
     
-    if (commentList.count>0) {
+    if (array.count > 0) {
         //移除第一个重复的（这是新浪微博接口的问题）
         [comments removeObjectAtIndex:0];
-        CommentModel *lastComment=[comments lastObject];
-        self.lastCommentId=[lastComment.id stringValue];
+        CommentModel *lastComment = [comments lastObject];
+        self.lastCommentId = [lastComment.id stringValue];
     }
     
     //追加数组
     [self.comments addObjectsFromArray:comments];
-    self.tableView.data=self.comments;
+    self.tableView.data = self.comments;
     
     
     //刷新
@@ -231,6 +244,14 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc {
+    [_tableView release];
+    [_userImageView release];
+    [_nickLabel release];
+    [_userBarView release];
+    [super dealloc];
 }
 
 @end

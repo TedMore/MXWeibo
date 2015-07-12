@@ -25,6 +25,8 @@
 @interface BaseTableView : UITableView<EGORefreshTableHeaderDelegate,UITableViewDataSource,UITableViewDelegate> {
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
+    
+    UIButton *_moreButton;
 }
 
 
@@ -36,8 +38,6 @@
 
 //代理
 @property(nonatomic,assign)id<UITableViewEventDelegate> eventDelegate;
-
-@property(nonatomic,retain)UIButton *moreButton;
 
 //是否还有更多
 @property(nonatomic,assign)BOOL isMore;

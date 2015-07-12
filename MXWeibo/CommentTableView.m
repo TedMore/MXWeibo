@@ -72,11 +72,13 @@
     NSNumber *total = [self.commentDic objectForKey:@"total_number"];
     countlabel.text = [NSString stringWithFormat:@"评论:%@",total];
     [view addSubview:countlabel];
+    [countlabel release];
     
     //间隔横线
     UIImageView *separatorImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40-1, ScreenWidth, 1)];
     separatorImage.image = [UIImage imageNamed:@"userinfo_header_separator.png"];
     [view addSubview:separatorImage];
+    [separatorImage release];
     
     return [view autorelease];
 }

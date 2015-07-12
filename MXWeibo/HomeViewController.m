@@ -45,7 +45,7 @@
     _tableView = [[WeiboTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-49-44) style:UITableViewStylePlain];
     
     _tableView.eventDelegate = self;
-    
+    _tableView.hidden = YES;
     [self.view addSubview:_tableView];
     
     //判断是否认证
@@ -145,8 +145,8 @@
 - (void)loadWeiboData
 {
     
-    //显示正在加载
-    //[super showLoading:YES];
+    //显示加载提示
+    [super showLoading:YES];
 //    [super showHUD:@"正在加载..." isDim:NO];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:@"20" forKey:@"count"];
@@ -230,31 +230,32 @@
 //上拉加载完成
 - (void)pullUpDataFinish:(id)result
 {
-    NSArray *statuses=[result objectForKey:@"statuses"];
-    NSMutableArray *array=[NSMutableArray arrayWithCapacity:statuses.count];
+    NSArray *statuses = [result objectForKey:@"statuses"];
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:statuses.count];
     
     for (NSDictionary *statuesDic in statuses) {
-        WeiboModel *weibo=[[[WeiboModel alloc] initWithDataDic:statuesDic] autorelease];
+        WeiboModel *weibo = [[WeiboModel alloc] initWithDataDic:statuesDic];
         [array addObject:weibo];
+        [weibo release];
     }
     
     //更新最后一个id
-    if (array.count>0) {
+    if (array.count > 0) {
         //移除第一个重复的（这是新浪微博接口的问题）
         [array removeObjectAtIndex:0];
-        WeiboModel *weibo=[array lastObject];
-        self.lastWeiboId=[weibo.weiboId stringValue];
+        WeiboModel *weibo = [array lastObject];
+        self.lastWeiboId = [weibo.weiboId stringValue];
     }
     
-    if (statuses.count>=20) {
-        self.tableView.isMore=YES;
+    if (statuses.count >= 20) {
+        self.tableView.isMore = YES;
     }else{
-        self.tableView.isMore=NO;
+        self.tableView.isMore = NO;
     }
     
     //追加数组
     [self.weibos addObjectsFromArray:array];
-    self.tableView.data=self.weibos;
+    self.tableView.data = self.weibos;
     
     //刷新
     [self.tableView reloadData];
@@ -279,6 +280,11 @@
 
 //网络加载完成
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result {
+    
+    //隐藏加载提示
+    [super showLoading:NO];
+    self.tableView.hidden = NO;
+    
     NSArray *statues = [result objectForKey:@"statuses"];
     NSMutableArray *weibos = [NSMutableArray arrayWithCapacity:statues.count];
     for (NSDictionary *statuesDic in statues) {
@@ -293,6 +299,9 @@
     if (weibos.count > 0) {
         WeiboModel *topWeibo = [weibos objectAtIndex:0];
         self.topWeiboId = [topWeibo.weiboId stringValue];
+        
+        WeiboModel *lastWeibo = [weibos lastObject];
+        self.lastWeiboId = [lastWeibo.weiboId stringValue];
     }
     
     //刷新tableView
