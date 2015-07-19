@@ -748,4 +748,9 @@
     [self.tap setEnabled:isEnable];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showRootController:YES];
+}
+
 @end

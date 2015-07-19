@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface BrowModeController : BaseViewController<UITableViewDataSource, UITableViewDelegate>
+@interface BrowModeController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

@@ -12,13 +12,13 @@
 
 //获取documents下的文件路径
 + (NSString *)getDocumentsPath:(NSString *)fileName;
-// date 格式化为 string
+//date 格式化为 string
 + (NSString*) stringFromFomate:(NSDate*)date formate:(NSString*)formate;
-// string 格式化为 date
+//string 格式化为 date
 + (NSDate *) dateFromFomate:(NSString *)datestring formate:(NSString*)formate;
-
 //格式化日期 Tue May 31 17:46:55 +0800 2011
 + (NSString *)fomateString:(NSString *)datestring;
 
 + (NSString *)parseLink:(NSString *)text;
+
 @end

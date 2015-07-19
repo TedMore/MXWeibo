@@ -22,29 +22,19 @@
 @end
 
 
-@interface BaseTableView : UITableView<EGORefreshTableHeaderDelegate,UITableViewDataSource,UITableViewDelegate> {
+@interface BaseTableView : UITableView <EGORefreshTableHeaderDelegate,UITableViewDataSource,UITableViewDelegate> {
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
-    
     UIButton *_moreButton;
 }
 
-
-//是否需要下拉效果
-@property(nonatomic,assign)BOOL refreshHeader;
-
-//为talbeview提供数据
-@property(nonatomic,retain)NSArray *data;
-
-//代理
-@property(nonatomic,assign)id<UITableViewEventDelegate> eventDelegate;
-
-//是否还有更多
-@property(nonatomic,assign)BOOL isMore;
+@property (nonatomic, assign) BOOL refreshHeader;                           //是否需要下拉效果
+@property (nonatomic, retain) NSArray *data;                                //为talbeview提供数据
+@property (nonatomic, assign) id<UITableViewEventDelegate> eventDelegate;   //代理
+@property (nonatomic, assign) BOOL isMore;                                  //是否还有更多
 
 //下拉弹回去
 - (void)doneLoadingTableViewData;
-
 //自动下拉刷新
 - (void)autoRefreshData;
 

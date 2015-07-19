@@ -17,8 +17,7 @@
 @implementation BrowModeController
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
@@ -26,20 +25,17 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"图片浏览模式";
 }
 
 #pragma mark - UITableView Degelate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    static NSString *identifier=@"modeCell";
 //    UITableViewCell *cell=[self.tableView dequeueReusableCellWithIdentifier:identifier];
 //    if (cell==nil) {
@@ -59,7 +55,6 @@
 //    textLabel.text=textName;
     
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    
     if (indexPath.row == 0) {
         cell.textLabel.text = @"大图";
         cell.detailTextLabel.text = @"所有网络加载大图";
@@ -74,14 +69,11 @@
 //    }else{
 //        cell.accessoryType=UITableViewCellAccessoryNone;
 //    }
-    
     return cell;
 }
 
 //切换主题
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     int mode = -1;
     if (indexPath.row == 0) {
         mode = LargeBrowMode;
@@ -93,18 +85,14 @@
     [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:kBrowMode];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    
     //刷新微博列表
     //注：这种场景下，HomeViewController与BrowModeController完全扯不上关系，不能使用delegate,或者block。只能使用通知。
     [[NSNotificationCenter defaultCenter] postNotificationName:kReloadWeiboTableNotification object:nil];
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 #pragma mark - dealloc/memoryWarning
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

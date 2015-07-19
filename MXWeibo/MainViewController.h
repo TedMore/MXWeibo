@@ -10,7 +10,7 @@
 #import "SinaWeibo.h"
 
 @class HomeViewController;
-@interface MainViewController : UITabBarController<SinaWeiboDelegate, UINavigationControllerDelegate> {
+@interface MainViewController : UITabBarController <SinaWeiboDelegate, UINavigationControllerDelegate> {
     UIView *_tabbarView;
     UIImageView *_sliderView;
     UIImageView *_badgeView;

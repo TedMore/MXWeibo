@@ -10,14 +10,14 @@
 #import "RTLabel.h"
 #import "CommentModel.h"
 
-@interface CommentCell : UITableViewCell<RTLabelDelegate> {
+@interface CommentCell : UITableViewCell <RTLabelDelegate> {
     UIImageView *_userImage;
     UILabel *_nickLabel;
     UILabel *_timeLabel;
     RTLabel *_contentLabel;
 }
 
-@property(nonatomic,retain)CommentModel *commentModel;
+@property (nonatomic, retain) CommentModel *commentModel;
 
 //计算评论单元格高度
 + (float)getCommentHeight:(CommentModel *)commentModel;

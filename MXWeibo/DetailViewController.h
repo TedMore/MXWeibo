@@ -12,23 +12,17 @@
 #import "CommentTableView.h"
 
 
-@interface DetailViewController : BaseViewController<UITableViewEventDelegate> {
+@interface DetailViewController : BaseViewController <UITableViewEventDelegate> {
     WeiboView *_weiboView;
 }
 
-
-
-@property(nonatomic,retain)WeiboModel *weiboModel;
-
-@property(nonatomic,retain) IBOutlet UIImageView *userImageView;
-@property(nonatomic, retain) IBOutlet UILabel *nickLabel;
-@property(nonatomic, retain) IBOutlet UIView *userBarView;
-
-@property(nonatomic,retain) IBOutlet CommentTableView *tableView;
-
-@property(nonatomic,retain)NSString *lastCommentId;
-@property(nonatomic,retain)NSMutableArray *comments;
-
-@property(nonatomic,retain)NSMutableArray *requests;
+@property (nonatomic, retain) WeiboModel *weiboModel;
+@property (nonatomic, retain) IBOutlet UIImageView *userImageView;
+@property (nonatomic, retain) IBOutlet UILabel *nickLabel;
+@property (nonatomic, retain) IBOutlet UIView *userBarView;
+@property (nonatomic, retain) IBOutlet CommentTableView *tableView;
+@property (nonatomic, retain) NSString *lastCommentId;
+@property (nonatomic, retain) NSMutableArray *comments;
+@property (nonatomic, retain) NSMutableArray *requests;
 
 @end

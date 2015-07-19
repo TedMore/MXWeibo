@@ -10,4 +10,6 @@
 
 @interface RightViewController : BaseViewController
 
+- (IBAction)sendAction:(UIButton *)sender;
+
 @end

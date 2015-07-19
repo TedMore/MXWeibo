@@ -25,17 +25,13 @@ const CGFloat WXHLkDefaulWXHLransitionDuration      = 0.3;
 const CGFloat WXHLkDefaultFasWXHLransitionDuration  = 0.2;
 const CGFloat WXHLkDefaultFlipTransitionDuration  = 0.7;
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-float WXHLOSVersion()
-{
+float WXHLOSVersion() {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL WXHLOSVersionIsAtLeast(float version)
-{
+BOOL WXHLOSVersionIsAtLeast(float version) {
     static const CGFloat kEpsilon = 0.0000001;
 #ifdef __IPHONE_6_0
     return 6.0 - version >= -kEpsilon;
@@ -76,7 +72,6 @@ BOOL WXHLOSVersionIsAtLeast(float version)
     return NO;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL WXHLIsKeyboardVisible() {
     // Operates on the assumption that the keyboard is visible if and only if there is a first
@@ -84,15 +79,11 @@ BOOL WXHLIsKeyboardVisible() {
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     return ![window isFirstResponder];
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL WXHLIsPhoneSupported() {
     NSString* deviceType = [UIDevice currentDevice].model;
     return [deviceType isEqualToString:@"iPhone"];
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL WXHLIsPad() {
 #ifdef __IPHONE_3_2
@@ -101,25 +92,19 @@ BOOL WXHLIsPad() {
     return NO;
 #endif
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIDeviceOrientation WXHLDeviceOrientation() {
     UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
     if (UIDeviceOrientationUnknown == orient) {
         return UIDeviceOrientationPortrait;
-        
-    } else {
+        } else {
         return orient;
     }
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL WXHLIsSupportedOrientation(UIInterfaceOrientation orientation) {
     if (WXHLIsPad()) {
         return YES;
-        
     } else {
         switch (orientation) {
             case UIInterfaceOrientationPortrait:
@@ -131,65 +116,47 @@ BOOL WXHLIsSupportedOrientation(UIInterfaceOrientation orientation) {
         }
     }
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGAffineTransform WXHLRotateTransformForOrientation(UIInterfaceOrientation orientation) {
     if (orientation == UIInterfaceOrientationLandscapeLeft) {
         return CGAffineTransformMakeRotation(M_PI*1.5);
-        
     } else if (orientation == UIInterfaceOrientationLandscapeRight) {
         return CGAffineTransformMakeRotation(M_PI/2);
-        
     } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
         return CGAffineTransformMakeRotation(-M_PI);
-        
     } else {
         return CGAffineTransformIdentity;
     }
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
 CGRect WXHLApplicationBounds()
 {
     return [UIScreen mainScreen].bounds;
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect WXHLApplicationFrame() {
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     return CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat WXHLToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
     if (UIInterfaceOrientationIsPortrait(orientation) || WXHLIsPad()) {
         return WXHL_ROW_HEIGHT;
-        
     } else {
         return WXHL_LANDSCAPE_TOOLBAR_HEIGHT;
     }
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat WXHLKeyboardHeightForOrientation(UIInterfaceOrientation orientation) {
     if (WXHLIsPad()) {
         return UIInterfaceOrientationIsPortrait(orientation) ? WXHL_IPAD_KEYBOARD_HEIGHT
         : WXHL_IPAD_LANDSCAPE_KEYBOARD_HEIGHT;
-        
     } else {
         return UIInterfaceOrientationIsPortrait(orientation) ? WXHL_KEYBOARD_HEIGHT
         : WXHL_LANDSCAPE_KEYBOARD_HEIGHT;
     }
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat WXHLGroupedTableCellInset() {
     return WXHLIsPad() ? WXHLkGroupedPadTableCellInset : WXHLkGroupedTableCellInset;
 }
-
-

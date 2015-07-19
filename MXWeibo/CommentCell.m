@@ -13,8 +13,7 @@
 
 @implementation CommentCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
     
@@ -26,7 +25,6 @@
     _userImage = [(UIImageView *)[self viewWithTag:100] retain];
     _nickLabel = [(UILabel *)[self viewWithTag:101] retain];
     _timeLabel = [(UILabel *)[self viewWithTag:102] retain];
-    
     _contentLabel = [[RTLabel alloc] initWithFrame:CGRectZero];
     _contentLabel.font = [UIFont systemFontOfSize:14.0f];
     _contentLabel.delegate = self;
@@ -38,17 +36,14 @@
     [self.contentView addSubview:_contentLabel];
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
-    
     //头像
     NSString *userImageUrl = self.commentModel.user.profile_image_url;
     //加载网络图片
     [_userImage setImageWithURL:[NSURL URLWithString:userImageUrl]];
     _userImage.layer.cornerRadius = 5;
     _userImage.layer.masksToBounds = 5;
-    
     
     //昵称
     _nickLabel.text = self.commentModel.user.screen_name;
@@ -62,16 +57,13 @@
     commentText = [UIUtils parseLink:commentText];
     _contentLabel.text = commentText;
     _contentLabel.height = _contentLabel.optimumSize.height;
-    
 }
 
 
-+ (float)getCommentHeight:(CommentModel *)commentModel
-{
++ (float)getCommentHeight:(CommentModel *)commentModel {
     RTLabel *rt = [[RTLabel alloc] initWithFrame:CGRectMake(0, 0, 240, 0)];
     rt.text = commentModel.text;
     rt.font = [UIFont systemFontOfSize:14.0f];
-   
     return rt.optimumSize.height + 20;
 }
 
@@ -80,6 +72,5 @@
 {
     
 }
-
 
 @end

@@ -10,11 +10,9 @@
 
 @interface ThemeImageView : UIImageView
 
-//图片名称
-@property(nonatomic,copy)NSString *imageName;
-
-@property(nonatomic,assign)int leftCapWidth;
-@property(nonatomic,assign)int topCapHeight;
+@property (nonatomic, copy) NSString *imageName; //图片名称
+@property (nonatomic, assign) int leftCapWidth;
+@property (nonatomic, assign) int topCapHeight;
 
 - (id)initWithImageName:(NSString *)imageName;
 

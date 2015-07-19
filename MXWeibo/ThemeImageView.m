@@ -19,13 +19,12 @@
 //使用xib创建后，调用的初始化方法
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(themeNotification:) name:kThemeDidChangeNofication object:nil];
 }
 
 - (id)initWithImageName:(NSString *)imageName {
     self = [self init];
-    if (self != nil) {
+    if (self) {
         self.imageName = imageName;
     }
     return self;
@@ -45,7 +44,6 @@
         [_imageName release];
         _imageName = [imageName copy];
     }
-    
     [self loadThemeImage];
 }
 
@@ -54,7 +52,6 @@
     if (self.imageName == nil) {
         return;
     }
-    
     UIImage *image = [[ThemeManager shareInstance] getThemeImage:_imageName];
     image = [image stretchableImageWithLeftCapWidth:self.leftCapWidth topCapHeight:self.topCapHeight];
     self.image = image;

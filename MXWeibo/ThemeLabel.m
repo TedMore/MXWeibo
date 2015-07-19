@@ -14,7 +14,6 @@
 - (void)dealloc {
     [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
 }
 
 - (id)init {
@@ -27,7 +26,7 @@
 
 - (id)initWithColorName:(NSString *)colorName {
     self = [self init];
-    if (self != nil) {
+    if (self) {
         self.colorName = colorName;
     }
     return self;
@@ -38,7 +37,6 @@
         [_colorName release];
         _colorName = [colorName copy];
     }
-    
     [self setColor];
 }
 

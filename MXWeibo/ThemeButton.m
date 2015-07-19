@@ -53,20 +53,19 @@
 //加载图片
 - (void)loadThemeImage {
     ThemeManager *themeManager = [ThemeManager shareInstance];
-    
     UIImage *image = [themeManager getThemeImage:_imageName];
     UIImage *highligtImage = [themeManager getThemeImage:_highligtImageName];
-    
+    image = [image stretchableImageWithLeftCapWidth:self.leftCapWidth topCapHeight:self.topCapHeight];
+    highligtImage = [highligtImage stretchableImageWithLeftCapWidth:self.leftCapWidth topCapHeight:self.topCapHeight];
     [self setImage:image forState:UIControlStateNormal];
     [self setImage:highligtImage forState:UIControlStateHighlighted];
     
-    
     UIImage *backImage = [themeManager getThemeImage:_backgroundImageName];
     UIImage *backHighligtImage = [themeManager getThemeImage:_backgroundHighligtImageName];
-    
+    backImage = [backImage stretchableImageWithLeftCapWidth:self.leftCapWidth topCapHeight:self.topCapHeight];
+    backHighligtImage = [backHighligtImage stretchableImageWithLeftCapWidth:self.leftCapWidth topCapHeight:self.topCapHeight];
     [self setBackgroundImage:backImage forState:UIControlStateNormal];
     [self setBackgroundImage:backHighligtImage forState:UIControlStateHighlighted];
-    
 }
 
 #pragma mark - setter  设置图片名后，重新加载该图片名对应的图片
@@ -84,7 +83,6 @@
         [_highligtImageName release];
         _highligtImageName = [highligtImageName copy];
     }
-    
     //重新加载图片
     [self loadThemeImage];
 }
@@ -94,7 +92,6 @@
         [_backgroundImageName release];
         _backgroundImageName = [backgroundImageName copy];
     }
-    
     //重新加载图片
     [self loadThemeImage];
 }
@@ -104,10 +101,18 @@
         [_backgroundHighligtImageName release];
         _backgroundHighligtImageName = [backgroundHighligtImageName copy];
     }
-    
     //重新加载图片
     [self loadThemeImage];
 }
 
+- (void)setLeftCapWidth:(int)leftCapWidth {
+    _leftCapWidth = leftCapWidth;
+    [self loadThemeImage];
+}
+
+- (void)setTopCapHeight:(int)topCapHeight {
+    _topCapHeight = topCapHeight;
+    [self loadThemeImage];
+}
 
 @end

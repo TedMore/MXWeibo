@@ -18,27 +18,23 @@
 
 @implementation ThemeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //取得所有的主题名
         themes = [[ThemeManager shareInstance].themesPlist allKeys];
         [themes retain];
-        
         self.title = @"主题切换";
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -82,16 +78,15 @@
     //比较cell中的主题名和当前使用的主题名是否相同
     if ([themeName isEqualToString:name]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
+    }
+    else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
     return cell;
 }
 
 //切换主题
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     //主题名称
     NSString *themeName = themes[indexPath.row];
     if ([themeName isEqualToString:@"默认"]) {
@@ -100,8 +95,7 @@
     
     //保存主题到本地
     [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:kThemeName];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];    
     [ThemeManager shareInstance].themeName = themeName;
     [[NSNotificationCenter defaultCenter] postNotificationName:kThemeDidChangeNofication object:themeName];
     

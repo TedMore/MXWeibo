@@ -14,7 +14,7 @@ static ThemeManager *sigleton = nil;
 
 + (ThemeManager *)shareInstance {
     if (sigleton == nil) {
-        @synchronized(self){
+        @synchronized(self) {
             sigleton = [[ThemeManager alloc] init];
         }
     }
@@ -27,7 +27,6 @@ static ThemeManager *sigleton = nil;
         //读取主题配置文件
         NSString *themePath = [[NSBundle mainBundle] pathForResource:@"theme" ofType:@"plist"];
         self.themesPlist = [NSDictionary dictionaryWithContentsOfFile:themePath];
-        
         //默认为空
         self.themeName = nil;
     }
@@ -40,7 +39,6 @@ static ThemeManager *sigleton = nil;
         [_themeName release];
         _themeName = [themeName copy];
     }
-    
     //切换主题，重新加载当前主题下的字体配置文件
     NSString *themeDir = [self getThemePath];
     NSString *filePath = [themeDir stringByAppendingPathComponent:@"fontColor.plist"];
@@ -54,32 +52,25 @@ static ThemeManager *sigleton = nil;
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         return resourcePath;
     }
-    
     //取得主题目录, 如：Skins/blue
     NSString *themePath = [self.themesPlist objectForKey:_themeName];
     //程序包的根目录
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    
     //完整的主题包目录
     NSString *path = [resourcePath stringByAppendingPathComponent:themePath];
-    
     return path;
 }
-
 
 //返回当前主题下的图片
 - (UIImage *)getThemeImage:(NSString *)imageName {
     if (imageName.length == 0) {
         return nil;
     }
-    
     //获取主题目录
     NSString *themePath = [self getThemePath];
     //imageName在当前主题的路径
     NSString *imagePath = [themePath stringByAppendingPathComponent:imageName];
-    
     UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-    
     return image;
 }
 
@@ -87,7 +78,6 @@ static ThemeManager *sigleton = nil;
     if (name.length == 0) {
         return nil;
     }
-    
     //返回三色值，如：24,35,60
     NSString *rgb = [_fontColorPlist objectForKey:name];
     NSArray *rgbs = [rgb componentsSeparatedByString:@","];
@@ -98,7 +88,6 @@ static ThemeManager *sigleton = nil;
         UIColor *color = Color(r, g, b, 1);
         return color;
     }
-    
     return nil;
 }
 
@@ -131,6 +120,5 @@ static ThemeManager *sigleton = nil;
 - (id)autorelease {
     return self;
 }
-
 
 @end

@@ -10,7 +10,7 @@
 
 @interface ThemeLabel : UILabel
 
-@property(nonatomic,copy)NSString *colorName;
+@property (nonatomic,copy) NSString *colorName;
 
 - (id)initWithColorName:(NSString *)colorName;
 

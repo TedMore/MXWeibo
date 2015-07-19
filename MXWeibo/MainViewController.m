@@ -15,6 +15,7 @@
 #import "UIFactory.h"
 #import "ThemeButton.h"
 #import "AppDelegate.h"
+#import "UserViewController.h"
 
 @interface MainViewController ()
 
@@ -22,8 +23,7 @@
 
 @implementation MainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self.tabBar setHidden:YES];
@@ -31,8 +31,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self _initViewController];
@@ -40,11 +39,9 @@
     
     //每60秒请求未读数接口
     [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
-    
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -61,12 +58,10 @@
             _tabbarView.left = -ScreenWidth;
         }
     }];
-    
     [self _resizeView:show];
 }
 
 #pragma mark - UI
-
 - (void)_resizeView:(BOOL)showTabbar {
     for (UIView *subView in self.view.subviews) {
         if ([subView isKindOfClass:NSClassFromString(@"")]) {
@@ -83,7 +78,9 @@
 - (void)_initViewController {
     _homeCtrl = [[HomeViewController alloc] init];
     MessageViewController *message = [[[MessageViewController alloc] init] autorelease];
-    ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
+//    ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
+    UserViewController *profile = [[[UserViewController alloc] init] autorelease];
+    profile.showLoginUser = YES;
     DiscoverViewController *discover = [[[DiscoverViewController alloc] init] autorelease];
     MoreViewController *more = [[[MoreViewController alloc] init] autorelease];
     
@@ -93,10 +90,8 @@
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:nav];
         [nav release];
-        
         nav.delegate = self;
     }
-    
     self.viewControllers = viewControllers;
 }
 
@@ -128,19 +123,15 @@
         [button addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
         [_tabbarView addSubview:button];
     }
-    
     _sliderView = [[UIFactory createImageView:@"tabbar_slider.png"] retain];
     _sliderView.backgroundColor = [UIColor clearColor];
     _sliderView.frame = CGRectMake((ScreenWidth/5-15)/2, 5, 15, 44);
     [_tabbarView addSubview:_sliderView];
-    
-
 }
 
 - (void)refreshUnReadView:(NSDictionary *)result {
     //新浪微博未读数
     NSNumber *status = [result objectForKey:@"status"];
-    
     if (_badgeView == nil) {
         _badgeView = [UIFactory createImageView:@"main_badge.png"];
         _badgeView.frame = CGRectMake(75-30, 5, 20, 20);
@@ -155,7 +146,6 @@
         [_badgeView addSubview:badgeLabel];
         [badgeLabel release];
     }
-    
     int n = [status intValue];
     if (n > 0) {
         UILabel *badgeLabel = (UILabel *)[_badgeView viewWithTag:100];
@@ -164,7 +154,8 @@
         }
         badgeLabel.text = [NSString stringWithFormat:@"%d", n];
         _badgeView.hidden = NO;
-    } else {
+    }
+    else {
         _badgeView.hidden = YES;
     }
 }
@@ -183,7 +174,6 @@
 #pragma mark - actions
 //tab 按钮的点击事件
 - (void)selectedTab:(UIButton *)button {
-    
     float x = button.left + (button.width-_sliderView.width)/2;
     [UIView animateWithDuration:0.2 animations:^{
         _sliderView.left = x;
@@ -195,7 +185,6 @@
 //        HomeViewController *homeCtrl = [homeNav.viewControllers objectAtIndex:0];
         [_homeCtrl autorefreshWeibo];
     }
-    
     self.selectedIndex = button.tag;
 }
 
@@ -214,9 +203,9 @@
                               sinaweibo.refreshToken, @"refresh_token", nil];
     [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"SinaWeiboAuthData"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
     [_homeCtrl loadWeiboData];
 }
+
 //注销后调用协议方法
 - (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo {
     //移除认证的数据
@@ -230,12 +219,12 @@
 
 #pragma mark - UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
     //导航控制器子控制器个数
     int count = (int)navigationController.viewControllers.count;
     if (count == 2) {
         [self showTarbar:NO];
-    } else if (count == 1) {
+    }
+    else if (count == 1) {
         [self showTarbar:YES];
     }
 }

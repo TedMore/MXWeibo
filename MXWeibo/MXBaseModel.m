@@ -10,32 +10,32 @@
 
 @implementation MXBaseModel
 
--(id)initWithDataDic:(NSDictionary*)data{
+- (id)initWithDataDic:(NSDictionary*)data {
     if (self = [super init]) {
         [self setAttributes:data];
     }
     return self;
 }
 
--(NSDictionary*)attributeMapDictionary{
+- (NSDictionary*)attributeMapDictionary {
     return nil;
 }
 
--(SEL)getSetterSelWithAttibuteName:(NSString*)attributeName{
+- (SEL)getSetterSelWithAttibuteName:(NSString*)attributeName {
     NSString *capital = [[attributeName substringToIndex:1] uppercaseString];
     NSString *setterSelStr = [NSString stringWithFormat:@"set%@%@:",capital,[attributeName substringFromIndex:1]];
     return NSSelectorFromString(setterSelStr);
 }
-- (NSString *)customDescription{
+
+- (NSString *)customDescription {
     return nil;
 }
 
-- (NSString *)description{
+- (NSString *)description {
     NSMutableString *attrsDesc = [NSMutableString stringWithCapacity:100];
     NSDictionary *attrMapDic = [self attributeMapDictionary];
     NSEnumerator *keyEnum = [attrMapDic keyEnumerator];
     id attributeName;
-    
     while ((attributeName = [keyEnum nextObject])) {
         SEL getSel = NSSelectorFromString(attributeName);
         if ([self respondsToSelector:getSel]) {
@@ -57,19 +57,18 @@
             
         }
     }
-    
     NSString *customDesc = [self customDescription];
     NSString *desc;
     
     if (customDesc && [customDesc length] > 0 ) {
         desc = [NSString stringWithFormat:@"%@:{%@,%@}",[self class],attrsDesc,customDesc];
-    }else {
+    }
+    else {
         desc = [NSString stringWithFormat:@"%@:{%@}",[self class],attrsDesc];
     }
-    
     return desc;
 }
--(void)setAttributes:(NSDictionary*)dataDic{
+- (void)setAttributes:(NSDictionary*)dataDic {
     NSDictionary *attrMapDic = [self attributeMapDictionary];
     if (attrMapDic == nil) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:[dataDic count]];
@@ -99,7 +98,8 @@
         }
     }
 }
-- (id)initWithCoder:(NSCoder *)decoder{
+
+- (id)initWithCoder:(NSCoder *)decoder {
     if( self = [super init] ){
         NSDictionary *attrMapDic = [self attributeMapDictionary];
         if (attrMapDic == nil) {
@@ -119,7 +119,8 @@
     }
     return self;
 }
-- (void)encodeWithCoder:(NSCoder *)encoder{
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
     NSDictionary *attrMapDic = [self attributeMapDictionary];
     if (attrMapDic == nil) {
         return;
@@ -144,7 +145,8 @@
         }
     }
 }
-- (NSData*)getArchivedData{
+
+- (NSData*)getArchivedData {
     return [NSKeyedArchiver archivedDataWithRootObject:self];
 }
 
@@ -163,7 +165,7 @@
 }
 
 #ifdef _FOR_DEBUG_  
--(BOOL) respondsToSelector:(SEL)aSelector {  
+- (BOOL)respondsToSelector:(SEL)aSelector {
     //    printf("SELECTOR: %s\n", [NSStringFromSelector(aSelector) UTF8String]);  
     return [super respondsToSelector:aSelector];  
 }  

@@ -16,8 +16,7 @@
 
 @implementation BaseNavigationController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(themeNotification:) name:kThemeDidChangeNofication object:nil];
@@ -30,15 +29,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kThemeDidChangeNofication object:nil];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self loadThemeImage];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -53,7 +49,8 @@
     if (version >= 5.0) {
         UIImage *image = [[ThemeManager shareInstance] getThemeImage:@"navigationbar_background.png"];
         [self.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    } else {
+    }
+    else {
         //调用setNeedsDisplay方法会让绚烂引擎异步调用drawRect方法
         [self.navigationBar setNeedsDisplay];
     }

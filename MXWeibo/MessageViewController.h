@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "WeiboTableView.h"
 
-@interface MessageViewController : BaseViewController
+@interface MessageViewController : BaseViewController <UITableViewEventDelegate> {
+    WeiboTableView *_weiboTable;
+}
 
 @end

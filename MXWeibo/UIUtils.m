@@ -14,19 +14,16 @@
 @implementation UIUtils
 
 + (NSString *)getDocumentsPath:(NSString *)fileName {
-    
     //两种获取document路径的方式
-    //    NSString *documents = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    //NSString *documents = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
     NSString *documents = [paths objectAtIndex:0];
     NSString *path = [documents stringByAppendingPathComponent:fileName];
-    
     return path;
 }
 
-+ (NSString*) stringFromFomate:(NSDate*) date formate:(NSString*)formate {
++ (NSString*)stringFromFomate:(NSDate*) date formate:(NSString*)formate {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:formate];
     NSString *str = [formatter stringFromDate:date];
@@ -34,7 +31,7 @@
     return str;
 }
 
-+ (NSDate *) dateFromFomate:(NSString *)datestring formate:(NSString*)formate {
++ (NSDate *)dateFromFomate:(NSString *)datestring formate:(NSString*)formate {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:formate];
     NSDate *date = [formatter dateFromString:datestring];
@@ -61,7 +58,6 @@
         // <a href='http://www.baidu.com'>http://www.baidu.com</a>
         // <a href='topic://#话题#'>#话题#</a>
         
-        
         NSString *replacing = nil;
         if ([linkString hasPrefix:@"@"]) {
             replacing = [NSString stringWithFormat:@"<a href='user://%@'>%@</a>", [linkString URLEncodedString], linkString];
@@ -75,6 +71,6 @@
         }
     }
     return text;
-
 }
+
 @end

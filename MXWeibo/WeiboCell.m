@@ -13,11 +13,11 @@
 #import "UIImageView+WebCache.h"
 #import "UIUtils.h"
 #import "RegexKitLite.h"
+#import "UserViewController.h"
 
 @implementation WeiboCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self _initView];
@@ -28,7 +28,7 @@
 //初始化子视图
 - (void)_initView {
     //用户头像
-    _userImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _userImage = [[InterfaceImageView alloc] initWithFrame:CGRectZero];
     _userImage.backgroundColor = [UIColor clearColor];
     _userImage.layer.cornerRadius = 5;  //圆弧半径
     _userImage.layer.borderWidth = .5;
@@ -56,7 +56,6 @@
     _commentLabel.textColor = [UIColor blackColor];
     [self.contentView addSubview:_commentLabel];
     
-    
     //微博来源
     _sourceLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _sourceLabel.font = [UIFont systemFontOfSize:12.0];
@@ -70,7 +69,6 @@
     _createLabel.backgroundColor = [UIColor clearColor];
     _createLabel.textColor = [UIColor blueColor];
     [self.contentView addSubview:_createLabel];
-    
     _weiboView = [[WeiboView alloc] initWithFrame:CGRectZero];
     [self.contentView addSubview:_weiboView];
     
@@ -82,7 +80,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     //-----------用户头像视图_userImage--------
     _userImage.frame = CGRectMake(5, 5, 35, 35);
     NSString *userImageUrl = _weiboModel.user.profile_image_url;
@@ -103,7 +100,8 @@
         _createLabel.text = dateString;
         _createLabel.frame = CGRectMake(50, self.height-20, 100, 20);
         [_createLabel sizeToFit];
-    } else {
+    }
+    else {
         _createLabel.hidden = YES;
     }
     
@@ -115,7 +113,8 @@
         _sourceLabel.text = [NSString stringWithFormat:@"来自%@", ret];
         _sourceLabel.frame = CGRectMake(_createLabel.right+(ScreenWidth-_createLabel.right)/2 , _createLabel.top, 100, 20);
         [_sourceLabel sizeToFit];
-    } else {
+    }
+    else {
         _sourceLabel.hidden = YES;
     }
     
@@ -126,7 +125,6 @@
     _weiboView.frame = CGRectMake(50, _nickLabel.bottom+10, kWeibo_Width_List, h);
     //调用WeiboView的重新布局方法
     [_weiboView setNeedsLayout];
-    
 }
 
 - (NSString *)parseSource:(NSString *)source {
@@ -142,6 +140,22 @@
         return resultString;
     }
     return nil;
+}
+
+//复写这个方法，是为了给图片增加点击事件
+- (void)setWeiboModel:(WeiboModel *)weiboModel {
+    if (_weiboModel != weiboModel) {
+        [_weiboModel release];
+        _weiboModel = [weiboModel retain];
+    }
+    __block WeiboCell *this = self;
+    _userImage.touchBlock = ^{
+        NSString *nickName = this.weiboModel.user.screen_name;
+        UserViewController *userCtrl = [[UserViewController alloc] init];
+        userCtrl.userName = nickName;
+        [this.viewController.navigationController pushViewController:userCtrl animated:YES];
+        [userCtrl release];
+    };
 }
 
 @end
