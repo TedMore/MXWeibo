@@ -302,10 +302,15 @@
     if ([absoluteString hasPrefix:@"user"]) {
         NSString *urlString = [url host];
         urlString = [urlString URLDecodedString];
+        NSLog(urlString);
         if (urlString.length > 0) {
             UserViewController *userViewCtrl = [[UserViewController alloc] init];
             [self.viewController.navigationController pushViewController:userViewCtrl animated:YES];
-            userViewCtrl.userName = [urlString substringFromIndex:1];
+            if ([urlString hasPrefix: @"@"]) {
+                userViewCtrl.userName = [urlString substringFromIndex:1];
+            } else {
+                userViewCtrl.userName = urlString;
+            }
             [userViewCtrl release];
         }
         NSLog(@"用户：%@", urlString);

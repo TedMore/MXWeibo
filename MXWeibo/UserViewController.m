@@ -75,7 +75,7 @@
     
 //    self.userName = @"吾行吾路2012";
     
-    NSLog(@"%@", self.userName);
+//    NSLog(@"%@", self.userName);
     if(self.userName.length == 0 && self.userId.length == 0) {
         NSLog(@"用户名和id都为空");
         return;

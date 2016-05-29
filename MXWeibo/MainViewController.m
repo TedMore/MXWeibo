@@ -83,9 +83,9 @@
 - (void)_initViewController {
     _homeCtrl = [[[HomeViewController alloc] init] autorelease];
     MessageViewController *message = [[[MessageViewController alloc] init] autorelease];
-//    ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
-    UserViewController *profile = [[[UserViewController alloc] init] autorelease];
-    profile.showLoginUser = YES;
+    ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
+//    UserViewController *profile = [[[UserViewController alloc] init] autorelease];
+//    profile.showLoginUser = YES;
     DiscoverViewController *discover = [[[DiscoverViewController alloc] init] autorelease];
     MoreViewController *more = [[[MoreViewController alloc] init] autorelease];
     
