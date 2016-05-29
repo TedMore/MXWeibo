@@ -1,0 +1,4 @@
+language: Objective-C
+osx_image: xcode7.3
+xcode_project: MXWeibo.xcodeproj
+xcode_scheme: MXWeibo
