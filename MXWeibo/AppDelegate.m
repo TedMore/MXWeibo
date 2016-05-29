@@ -55,12 +55,12 @@
     [self setTheme];
     
     _mainCtrl = [[MainViewController alloc] init];
-    LeftViewController *leftCtrl = [[LeftViewController alloc] init];
+//    LeftViewController *leftCtrl = [[LeftViewController alloc] init];
     RightViewController *rightCtrl = [[RightViewController alloc] init];
     
     //初始化左右菜单
     self.ddMenuCtrl = [[DDMenuController alloc] initWithRootViewController:_mainCtrl];
-    self.ddMenuCtrl.leftViewController = leftCtrl;
+//    self.ddMenuCtrl.leftViewController = leftCtrl;
     self.ddMenuCtrl.rightViewController = rightCtrl;
     
     //初始化微博对象

@@ -76,6 +76,7 @@
     UIView *selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 0)];
     selectBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"statusdetail_cell_sepatator"]];
     self.selectedBackgroundView = selectBackgroundView;
+    [selectBackgroundView release];
 }
 
 - (void)layoutSubviews {
@@ -83,6 +84,7 @@
     //-----------用户头像视图_userImage--------
     _userImage.frame = CGRectMake(5, 5, 35, 35);
     NSString *userImageUrl = _weiboModel.user.profile_image_url;
+
     [_userImage setImageWithURL:[NSURL URLWithString:userImageUrl]];
     
     //昵称_nickLabel
@@ -156,6 +158,18 @@
         [this.viewController.navigationController pushViewController:userCtrl animated:YES];
         [userCtrl release];
     };
+}
+
+- (void)dealloc {
+    [_weiboModel release];
+    [_weiboView release];
+    [_userImage release];
+    [_nickLabel release];
+    [_repostCountLabel release];
+    [_commentLabel release];
+    [_sourceLabel release];
+    [_createLabel release];
+    [super dealloc];
 }
 
 @end

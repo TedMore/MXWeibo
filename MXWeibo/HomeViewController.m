@@ -50,11 +50,21 @@
     }
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [_tableView release];
+    [super dealloc];
+}
+
 #pragma mark - UI
 //显示新微博的数量
 - (void)showNewWeiboCount:(int)count {
     if (barView == nil) {
-        barView = [[UIFactory createImageView:@"timeline_new_status_background.png"] retain];
+        barView = [UIFactory createImageView:@"timeline_new_status_background.png"];
         //拉伸图片
         UIImage *image = [barView.image stretchableImageWithLeftCapWidth:5 topCapHeight:5];
         barView.image = image;
@@ -88,8 +98,8 @@
             }
         }];
         //播放提示声音
-        NSString *filePath=[[NSBundle mainBundle] pathForResource:@"msgcome" ofType:@"wav"];
-        NSURL *url=[NSURL fileURLWithPath:filePath];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"msgcome" ofType:@"wav"];
+        NSURL *url = [NSURL fileURLWithPath:filePath];
         //声明系统声音id
         SystemSoundID soundId;
         //注册系统声音
@@ -138,7 +148,7 @@
         return;
     }
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"20",@"count",self.topWeiboId,@"since_id",nil];
-    [self.sinaweibo requestWithURL:@"statuses/home_timeline.json"
+    [self.sinaweibo requestWithURL:URL_HOME_TIMELINE
                             params:params
                         httpMethod:@"GET"
                              block:^(id result){
@@ -153,7 +163,7 @@
         return;
     }
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"20",@"count",self.lastWeiboId,@"max_id",nil];
-    [self.sinaweibo requestWithURL:@"statuses/home_timeline.json"
+    [self.sinaweibo requestWithURL:URL_HOME_TIMELINE
                             params:params
                         httpMethod:@"GET"
                              block:^(id result){
@@ -166,9 +176,11 @@
     NSArray *statuses = [result objectForKey:@"statuses"];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:statuses.count];
     for (NSDictionary *statuesDic in statuses) {
-        WeiboModel *weibo=[[WeiboModel alloc] initWithDataDic:statuesDic] ;
+        WeiboModel *weibo = [[WeiboModel alloc] initWithDataDic:statuesDic] ;
         [array addObject:weibo];
+        [weibo release];
     }
+    
     //更新最大id
     if (array.count > 0) {
         WeiboModel *weibo =[array objectAtIndex:0];
@@ -195,7 +207,6 @@
 - (void)pullUpDataFinish:(id)result {
     NSArray *statuses = [result objectForKey:@"statuses"];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:statuses.count];
-    
     for (NSDictionary *statuesDic in statuses) {
         WeiboModel *weibo = [[WeiboModel alloc] initWithDataDic:statuesDic];
         [array addObject:weibo];
@@ -255,6 +266,7 @@
         self.lastWeiboId = [lastWeibo.weiboId stringValue];
     }
     if (weibos.count >= 20) {
+        
         self.tableView.isMore=YES;
     }
     else{
@@ -271,17 +283,6 @@
 
 - (void)logoutAction:(UIBarButtonItem *)buttonItem {
     [self.sinaweibo logOut];
-}
-
-#pragma mark - Memery Manager
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-    [_tableView release];
-    [super dealloc];
 }
 
 @end

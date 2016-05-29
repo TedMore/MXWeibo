@@ -17,16 +17,15 @@
 @class ThemeImageView;
 @interface WeiboView : UIView <RTLabelDelegate> {
 @private
-    RTLabel         *_textLabel;            //微博内容
-    UIImageView     *_image;                //微博图片
-    ThemeImageView     *_repostBackgroudView;  //转发额微博视图背景
-    WeiboView       *_repostView;           //转发的微博视图
+    RTLabel         *_textLabel;                //微博内容
+    UIImageView     *_image;                    //微博图片
+    ThemeImageView     *_repostBackgroudView;   //转发额微博视图背景
+    WeiboView       *_repostView;               //转发的微博视图
     NSMutableString *_parseText;
 }
-
-@property(nonatomic,retain)WeiboModel *weiboModel;  //微博模型对象
-@property(nonatomic,assign)BOOL isRepost;           //当前的微博视图，是否是转发的
-@property(nonatomic,assign)BOOL isDetail;           //微博视图是否显示在详情页面
+@property (nonatomic, retain) WeiboModel *weiboModel;  //微博模型对象
+@property (nonatomic, assign) BOOL isRepost;           //当前的微博视图，是否是转发的
+@property (nonatomic, assign) BOOL isDetail;           //微博视图是否显示在详情页面
 
 //获取字体大小
 + (float)getFontSize:(BOOL)isDetail isRepost:(BOOL)isRepost;

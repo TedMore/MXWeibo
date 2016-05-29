@@ -27,11 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"微博详情";
+    self.title = @"微博详情";
     [self _initView];
     [self loadData];
 }
-
 
 - (void)_initView {
     //创建tableView头视图
@@ -46,7 +45,7 @@
     
     //昵称
     self.nickLabel.text = _weiboModel.user.screen_name;
-    
+    [self.nickLabel sizeToFit];
     [tableHeaderView addSubview:self.userBarView];
     
 //    //小图标
@@ -56,7 +55,7 @@
     
     //----创建微博视图----
     float h = [WeiboView getWeiboViewHeight:self.weiboModel isRepost:NO isDetail:YES];
-    _weiboView=[[WeiboView alloc] initWithFrame:CGRectMake(10, _userBarView.bottom+10, ScreenWidth-20, h)];
+    _weiboView = [[WeiboView alloc] initWithFrame:CGRectMake(10, _userBarView.bottom+10, ScreenWidth-20, h)];
     _weiboView.isDetail = YES;
     _weiboView.weiboModel = _weiboModel;
     [tableHeaderView addSubview:_weiboView];
@@ -89,7 +88,7 @@
 
 #pragma mark - Data
 - (void)loadData {
-    NSString *weiboId=[_weiboModel.weiboId stringValue];
+    NSString *weiboId = [_weiboModel.weiboId stringValue];
     if (weiboId.length == 0) {
         return;
     }
@@ -212,6 +211,7 @@
 }
 
 - (void)dealloc {
+    [_weiboView release];
     [_tableView release];
     [_userImageView release];
     [_nickLabel release];

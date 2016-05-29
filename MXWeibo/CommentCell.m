@@ -9,6 +9,9 @@
 #import "CommentCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIUtils.h"
+#import "UserViewController.h"
+#import "WebViewController.h"
+#import "NSString+URLEncoding.h"
 
 
 @implementation CommentCell
@@ -59,6 +62,13 @@
     _contentLabel.height = _contentLabel.optimumSize.height;
 }
 
+- (void)dealloc {
+    [_userImage release];
+    [_nickLabel release];
+    [_timeLabel release];
+    [_contentLabel release];
+    [super dealloc];
+}
 
 + (float)getCommentHeight:(CommentModel *)commentModel {
     RTLabel *rt = [[RTLabel alloc] initWithFrame:CGRectMake(0, 0, 240, 0)];
@@ -70,7 +80,29 @@
 #pragma mark - RTLabel Delegate
 - (void)rtLabel:(id)rtLabel didSelectLinkWithURL:(NSURL*)url
 {
-    
+    NSString *absoluteString = [url absoluteString];
+    if ([absoluteString hasPrefix:@"user"]) {
+        NSString *urlString = [url host];
+        urlString = [urlString URLDecodedString];
+        if (urlString.length > 0) {
+            UserViewController *userViewCtrl = [[UserViewController alloc] init];
+            [self.viewController.navigationController pushViewController:userViewCtrl animated:YES];
+            userViewCtrl.userName = [urlString substringFromIndex:1];
+            [userViewCtrl release];
+        }
+        NSLog(@"用户：%@", urlString);
+    }
+    else if ([absoluteString hasPrefix:@"http"]) {
+        NSLog(@"连接：%@", absoluteString);
+        WebViewController *webViewCtrl = [[WebViewController alloc] initWithUrl:absoluteString];
+        [self.viewController.navigationController pushViewController:webViewCtrl animated:YES];
+        [webViewCtrl release];
+    }
+    else if ([absoluteString hasPrefix:@"topic"]) {
+        NSString *urlString = [url host];
+        urlString = [urlString URLDecodedString];
+        NSLog(@"话题：%@", urlString);
+    }
 }
 
 @end

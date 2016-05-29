@@ -24,12 +24,12 @@
 }
 
 - (void)_initView {
-    _refreshHeaderView=[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.bounds.size.height, self.frame.size.width, self.bounds.size.height)];
+    _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.bounds.size.height, self.frame.size.width, self.bounds.size.height)];
     _refreshHeaderView.delegate = self;
-    _refreshHeaderView.backgroundColor=[UIColor clearColor];
-    self.dataSource=self;
-    self.delegate=self;
-    self.refreshHeader=YES;
+    _refreshHeaderView.backgroundColor = [UIColor clearColor];
+    self.dataSource = self;
+    self.delegate = self;
+    self.refreshHeader = YES;
     
     //尾部视图
     _moreButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -44,7 +44,15 @@
     activityView.tag = 2013;
     [activityView stopAnimating];
     [_moreButton addSubview:activityView];
+    [activityView release];
     self.tableFooterView = _moreButton;
+}
+
+- (void)dealloc {
+    [_refreshHeaderView release];
+    [_moreButton release];
+    
+    [super dealloc];
 }
 
 - (void)setRefreshHeader:(BOOL)refreshHeader {

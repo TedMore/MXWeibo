@@ -109,7 +109,6 @@
 		19C9D2331B500BA200AFA7D0 /* MXHLGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9D2321B500BA200AFA7D0 /* MXHLGlobalUICommon.m */; };
 		19C9D2391B500C2B00AFA7D0 /* CustomCatagory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9D2381B500C2B00AFA7D0 /* CustomCatagory.m */; };
 		19C9D23E1B50107900AFA7D0 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9D23D1B50107900AFA7D0 /* BaseNavigationController.m */; };
-		19C9D2401B50137D00AFA7D0 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C9D23F1B50137D00AFA7D0 /* HomeViewController.xib */; };
 		19C9D2421B501B5700AFA7D0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C9D2411B501B5700AFA7D0 /* libicucore.dylib */; };
 		19C9D2461B50210800AFA7D0 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C9D2451B50210800AFA7D0 /* JSONKit.m */; };
 		19CBF82C1B5338B3006EEA5F /* InterfaceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CBF82B1B5338B3006EEA5F /* InterfaceImageView.m */; };
@@ -792,7 +791,6 @@
 		19C9D2381B500C2B00AFA7D0 /* CustomCatagory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCatagory.m; sourceTree = "<group>"; };
 		19C9D23C1B50107900AFA7D0 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		19C9D23D1B50107900AFA7D0 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		19C9D23F1B50137D00AFA7D0 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		19C9D2411B501B5700AFA7D0 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		19C9D2441B50210800AFA7D0 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		19C9D2451B50210800AFA7D0 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -1667,7 +1665,6 @@
 			children = (
 				19C9D1FE1B50046500AFA7D0 /* HomeViewController.h */,
 				19C9D1FF1B50046500AFA7D0 /* HomeViewController.m */,
-				19C9D23F1B50137D00AFA7D0 /* HomeViewController.xib */,
 				19C9D20D1B5006A100AFA7D0 /* WeiboView.h */,
 				19C9D20E1B5006A100AFA7D0 /* WeiboView.m */,
 				19C9D20A1B50069800AFA7D0 /* WeiboCell.h */,
@@ -2398,7 +2395,6 @@
 				19FD4FAD1B50259B0003EFFF /* compose_placebutton_background.png in Resources */,
 				19FD51901B5025FD0003EFFF /* 016.gif in Resources */,
 				19FD4FDD1B50259B0003EFFF /* newbar_icon_3.png in Resources */,
-				19C9D2401B50137D00AFA7D0 /* HomeViewController.xib in Resources */,
 				19D83C941B54EA71005F1399 /* NearbyViewController.xib in Resources */,
 				19FD51BF1B5025FD0003EFFF /* 031@2x.png in Resources */,
 				19FD51CA1B5025FD0003EFFF /* 035.png in Resources */,

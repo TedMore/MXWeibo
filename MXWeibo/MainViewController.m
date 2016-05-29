@@ -61,6 +61,11 @@
     [self _resizeView:show];
 }
 
+- (void)dealloc {
+    [_tabbarView release];
+    [super dealloc];
+}
+
 #pragma mark - UI
 - (void)_resizeView:(BOOL)showTabbar {
     for (UIView *subView in self.view.subviews) {
@@ -76,7 +81,7 @@
 
 //初始化子控制器
 - (void)_initViewController {
-    _homeCtrl = [[HomeViewController alloc] init];
+    _homeCtrl = [[[HomeViewController alloc] init] autorelease];
     MessageViewController *message = [[[MessageViewController alloc] init] autorelease];
 //    ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
     UserViewController *profile = [[[UserViewController alloc] init] autorelease];
@@ -123,7 +128,7 @@
         [button addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
         [_tabbarView addSubview:button];
     }
-    _sliderView = [[UIFactory createImageView:@"tabbar_slider.png"] retain];
+    _sliderView = [UIFactory createImageView:@"tabbar_slider.png"];
     _sliderView.backgroundColor = [UIColor clearColor];
     _sliderView.frame = CGRectMake((ScreenWidth/5-15)/2, 5, 15, 44);
     [_tabbarView addSubview:_sliderView];
@@ -164,7 +169,7 @@
 - (void)loadUnReadData {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     SinaWeibo *sinaweibo = appDelegate.sinaweibo;
-    [sinaweibo requestWithURL:@"remind/unread_count.json"
+    [sinaweibo requestWithURL:URL_UNREAD_COUNT
                        params:nil
                    httpMethod:@"GET" block:^(NSDictionary *result) {
                        [self refreshUnReadView:result];
@@ -174,7 +179,7 @@
 #pragma mark - actions
 //tab 按钮的点击事件
 - (void)selectedTab:(UIButton *)button {
-    float x = button.left + (button.width-_sliderView.width)/2;
+    float x = button.left + (button.width - _sliderView.width)/2;
     [UIView animateWithDuration:0.2 animations:^{
         _sliderView.left = x;
     }];

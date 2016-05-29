@@ -64,6 +64,15 @@
     [self insertSubview:_repostBackgroudView atIndex:0];
 }
 
+- (void)dealloc {
+    [_weiboModel release];
+    [_parseText release];
+    [_textLabel release];
+    [_image release];
+    [_repostView release];
+    [super dealloc];
+}
+
 - (void)setWeiboModel:(WeiboModel *)weiboModel {
     if (_weiboModel != weiboModel) {
         [_weiboModel release];
@@ -265,7 +274,6 @@
             if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
                 height += (80+10);
             }
-
         }
         else {
             NSString *bmiddleImage = weiboModel.bmiddleImage;
